@@ -1,0 +1,574 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>NITRO RUN 9 — RIVAL UPRISING | 3D RACING</title><meta name="theme-color" content="#070b16"><style>
+@import url('data:text/css,');
+:root{--cyan:#61f2ed;--pink:#fa4d79;--gold:#ffe29a;--ink:#070b16;--white:#f4f7ff}*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;background:#060b16;color:var(--white);font-family:Inter,Arial,Helvetica,sans-serif;overflow:hidden}button,select,input{font:inherit}button{cursor:pointer;touch-action:none}button:focus-visible{outline:2px solid #a7f8ff;outline-offset:3px}#game{position:fixed;inset:0;width:100vw;height:100vh;display:block;background:linear-gradient(#203651,#92a4af)}#vignette{position:fixed;inset:0;pointer-events:none;background:linear-gradient(180deg,#0509157a 0%,transparent 21%,transparent 65%,#040711d9 100%),radial-gradient(ellipse at center,transparent 30%,#05081172 100%);z-index:1}#speedFX{position:absolute;inset:0;z-index:2;pointer-events:none}#top{position:fixed;z-index:5;top:0;left:0;right:0;padding:18px 25px;display:flex;align-items:start;justify-content:space-between;gap:15px;pointer-events:none}.logo{font-size:22px;letter-spacing:1px;font-style:italic;font-weight:1000;text-shadow:0 3px 12px #000c}.logo span{color:var(--cyan)}.logo small{display:block;font-size:9px;letter-spacing:3.3px;font-style:normal;font-weight:800;color:#b8d0e6;margin-top:2px}.topright{display:flex;gap:8px;pointer-events:auto}.smallbtn{background:#091526c2;color:#eaf8ff;border:1px solid #b8e7ff52;padding:9px 13px;border-radius:8px;font-size:11px;letter-spacing:1px;font-weight:900;backdrop-filter:blur(9px)}.smallbtn:hover{background:#264259}#hud{position:fixed;inset:0;z-index:4;pointer-events:none;display:none}.hud-top{position:absolute;top:85px;left:25px;display:flex;align-items:stretch;gap:12px}.hudblock{background:#070e24b8;border:1px solid #a1bed64a;padding:10px 15px;border-radius:10px;backdrop-filter:blur(9px);min-width:95px}.micro{font-size:10px;letter-spacing:2px;color:#abbed6;font-weight:950}.hbig{font-size:33px;line-height:1.15;font-weight:1000;font-style:italic;letter-spacing:-1px}.hbig small{font-size:16px;color:#bad3f0;font-style:normal}.hbig.cyan{color:var(--cyan)}.hud-right{position:absolute;right:24px;top:85px;display:flex;gap:12px;align-items:start}.minimap-box{width:195px;height:165px;border-radius:12px;background:#061022c2;border:1px solid #8bacc65b;padding:8px;backdrop-filter:blur(9px)}#minimap{width:100%;height:100%}#rivals{min-width:175px;background:#061022b9;border:1px solid #8bacc65b;border-radius:10px;padding:12px;backdrop-filter:blur(9px)}.rivalrow{display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:12px;font-weight:850;color:#bad0e7}.rivalrow.me{color:#6affed}.hud-bottom{position:absolute;bottom:23px;left:25px;right:25px;display:flex;align-items:end;justify-content:space-between;gap:20px}.gauges{display:flex;align-items:end;gap:19px}.speednum{font-size:clamp(52px,6.5vw,97px);font-weight:1000;font-style:italic;line-height:.84;letter-spacing:-6px;text-shadow:0 3px 23px #000a}.speedunit{font-size:12px;letter-spacing:2px;color:#afc4dc;font-weight:900;margin-left:6px}.gear{font-style:italic;font-weight:1000;font-size:43px;color:var(--gold)}.bars{display:grid;gap:11px;width:205px}.barlabel{display:flex;justify-content:space-between;font-size:10px;font-weight:950;letter-spacing:1.5px;margin-bottom:5px}.bar{height:8px;overflow:hidden;border-radius:10px;background:#263247cc}.bar>div{height:100%;width:100%;background:linear-gradient(90deg,#36ace3,#60ffe8);border-radius:10px;transition:width .12s}.bar.super>div{background:linear-gradient(90deg,#ee7d30,#f9378b,#a462fc)}.boosthelp{font-size:10px;letter-spacing:.8px;color:#c5dbeb;margin-top:5px}#toast{position:fixed;left:50%;top:27%;transform:translate(-50%,-50%);color:#fff;text-shadow:0 5px 30px #000,0 0 25px #61f2edaa;font-size:clamp(21px,4.2vw,54px);font-style:italic;font-weight:1000;pointer-events:none;z-index:9;white-space:nowrap;opacity:0;transition:opacity .17s}#toast.show{opacity:1}#countdown{position:fixed;left:50%;top:48%;transform:translate(-50%,-50%);z-index:10;font-size:clamp(90px,15vw,210px);font-weight:1000;font-style:italic;color:#fff;text-shadow:0 0 55px #31d7f2a8,0 12px 40px #001;pointer-events:none;display:none}#flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:12}#garage{position:fixed;inset:0;z-index:7;background:linear-gradient(90deg,#04091bee 0%,#061127e0 32%,#0511256b 62%,#05081422 100%);display:flex;align-items:center;padding:90px 4.5% 35px;overflow:auto}.garagePanel{width:min(545px,100%)}.eyebrow{color:#75ffee;font-weight:950;letter-spacing:4.5px;font-size:11px}.headline{font-size:clamp(55px,7vw,105px);line-height:.85;margin:14px 0 12px;font-style:italic;letter-spacing:-5px;font-weight:1000}.headline i{font-style:normal;color:#70fff1}.strap{font-size:13px;color:#b7cce2;line-height:1.65;max-width:440px;margin:0 0 22px}.sectionlabel{font-size:10px;color:#9cb4d1;letter-spacing:2.3px;font-weight:950;margin:19px 0 10px}.cars{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.carPick{border:1px solid #7296ac74;background:#111e34b8;text-align:left;border-radius:9px;padding:13px 10px;min-width:0;color:#e8f3ff;transition:.15s}.carPick:hover{background:#22374c}.carPick.active{border-color:#73ffec;background:linear-gradient(140deg,#123f46,#162a46);box-shadow:inset 0 0 24px #48eedf16,0 0 20px #00dfc222}.carIcon{height:25px;width:66px;max-width:90%;border-radius:20% 30% 23% 23%;margin-bottom:9px;position:relative;transform:skewX(-17deg);box-shadow:inset 0 -8px #0007,0 7px 15px #0008}.carIcon:before{content:'';position:absolute;background:#08162e;width:35%;height:12px;top:-4px;left:33%;border-radius:5px 7px 2px 2px}.carName{font-size:12px;font-weight:1000;letter-spacing:.4px}.carClass{font-size:9px;color:#a6bad1;margin-top:4px}.options{display:flex;gap:11px}.opt{flex:1;min-width:0}.options select{width:100%;appearance:none;padding:12px;background:#15253bcf;color:#fff;border:1px solid #8facbc85;border-radius:7px;font-size:12px;font-weight:850}.start{margin-top:20px;width:100%;padding:17px;background:linear-gradient(96deg,#61e7ec,#b6fff2);border:0;border-radius:6px;color:#062329;font-size:17px;font-style:italic;letter-spacing:1.8px;font-weight:1000;box-shadow:0 10px 40px #42ffe536}.start:hover{filter:brightness(1.12)}.guide{margin-top:14px;font-size:11px;line-height:1.7;color:#a5c0d7}.guide b{color:#fff}.garageStat{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;color:#bfd0e6;font-size:11px}.statbars{display:flex;gap:3px}.statbars b{height:5px;width:16px;border-radius:8px;background:#24445c}.statbars b.on{background:#56e9dc}#carPlate{position:fixed;right:6%;bottom:8%;z-index:8;pointer-events:none;text-align:right;text-shadow:0 4px 17px #000}.plateName{font-size:clamp(27px,4vw,63px);font-style:italic;font-weight:1000;line-height:.92}.plateSub{font-size:11px;letter-spacing:4px;margin-top:10px;color:#87f8ed;font-weight:900}#pauseOverlay,#finishOverlay{position:fixed;inset:0;z-index:15;display:none;place-items:center;background:#030814d9;backdrop-filter:blur(13px);padding:18px}.modal{width:min(510px,100%);border:1px solid #83cddc69;background:linear-gradient(140deg,#111e39,#081020);border-radius:17px;padding:35px;box-shadow:0 30px 110px #000b}.modal h2{font-size:clamp(40px,7vw,72px);font-style:italic;letter-spacing:-3px;line-height:.94;margin:10px 0 14px}.modal p{font-size:14px;color:#adc7e4;line-height:1.7}.modalActions{display:flex;gap:9px}.modalActions button{flex:1;border-radius:8px;padding:13px 9px;border:1px solid #78b7d48c;background:#18344c;color:#fff;font-weight:950;font-size:12px}.modalActions button.primary{background:#5cebdc;color:#092131;border-color:transparent}.finishGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:20px 0}.finishGrid div{background:#0d2a44;border-radius:9px;padding:12px}.finishGrid strong{display:block;margin-top:6px;font-size:23px}.finishGrid small{font-size:10px;letter-spacing:1px;color:#a6c1d8;font-weight:850}#touch{position:fixed;bottom:9px;left:8px;right:8px;z-index:6;display:none;pointer-events:none;justify-content:space-between;align-items:end;gap:8px}.touchgroup{display:flex;gap:8px;pointer-events:auto}.touch{border:1px solid #a5e1ff82;background:#112a42c9;min-width:61px;min-height:66px;border-radius:13px;font-weight:1000;color:white;backdrop-filter:blur(8px);font-size:17px}.touch.pressed{background:#347788}.touch.burst{background:#117d86de;color:#fff}.touch.brake{background:#a32648d9}.touch.nitro{background:#41399bdb}.touch.super{background:linear-gradient(135deg,#ffb447,#eb2870);min-width:75px;font-size:12px}.touch small{font-size:9px;display:block;letter-spacing:1px}.touch[disabled]{filter:grayscale(1);opacity:.55}#support{position:fixed;inset:0;z-index:100;background:#0a1223;display:none;place-items:center;padding:30px;text-align:center}#support h2{font-size:32px}#support p{max-width:600px;line-height:1.7;color:#b6c7dd}
+@media(max-width:960px){.hud-right{top:80px;right:14px}.minimap-box{width:147px;height:134px}#rivals{min-width:120px}.rivalrow{font-size:10px}.hudblock{padding:8px}.hud-top{top:78px;left:13px}.hbig{font-size:25px}.hud-bottom{bottom:88px;left:13px;right:13px}.garagePanel{max-width:490px}.headline{font-size:67px}.bars{width:155px}.touch{min-height:59px}}
+@media(max-width:650px){#top{padding:9px}.logo{font-size:17px}.logo small{font-size:7px;letter-spacing:1.6px}.smallbtn{font-size:9px;padding:8px}.garagePanel{width:100%}#garage{padding:73px 14px 25px;align-items:flex-start;background:linear-gradient(90deg,#040a19ed,#081324df)}.headline{font-size:54px;letter-spacing:-3px}.strap{font-size:11px;margin-bottom:10px}.cars{gap:5px}.carPick{padding:9px 6px}.carName{font-size:10px}.carClass{font-size:8px}.carIcon{height:14px}.sectionlabel{margin:12px 0 7px}.start{padding:12px}.guide{font-size:10px;margin-top:10px}#carPlate{display:none}.hud-top{top:55px;gap:5px}.hudblock{padding:5px 7px;min-width:65px}.micro{font-size:7px;letter-spacing:.7px}.hbig{font-size:22px}.hud-right{top:55px}.minimap-box{width:102px;height:96px;padding:4px}#rivals{display:none}.hud-bottom{bottom:84px;left:9px;right:9px}#scoreBlock{display:none}.speednum{font-size:48px;letter-spacing:-3px}.gear{font-size:27px}.gauges{gap:7px}.bars{width:122px;gap:6px}.barlabel{font-size:8px}.boosthelp{display:none}#touch{display:flex}.touch{min-width:48px;min-height:57px;font-size:15px}.touch.super{min-width:60px;font-size:10px}}
+@media(pointer:coarse){#touch{display:flex}.hud-bottom{bottom:88px}}
+
+.driveModes{display:flex;gap:9px;margin-top:8px}.modeChoice{flex:1;min-width:0;background:#142439ed;color:#d3e8f5;border:1px solid #729ab17a;text-align:left;font-weight:950;font-style:italic;font-size:12px;padding:12px 10px;border-radius:9px;letter-spacing:.5px}.modeChoice small{display:block;color:#9fb7ca;font-weight:550;font-size:10px;font-style:normal;margin-top:5px}.modeChoice.selectedMode{background:linear-gradient(135deg,#135557,#1c3451);border-color:#79ffdf;color:#a9fff3;box-shadow:inset 0 0 17px #61f2ed2d}.touch.drift{background:#1a6665d9;font-size:12px;min-width:65px}.touch.drift small{font-size:9px}
+@media(max-width:650px){.driveModes{gap:5px}.modeChoice{font-size:10px;padding:9px 7px}.modeChoice small{font-size:9px}.touch.drift{min-width:50px;font-size:10px}}
+
+@media(max-width:650px){#touch{display:grid!important;grid-template-columns:minmax(96px,34%) minmax(0,66%);align-items:end;gap:8px}#touch .touchgroup:first-child{display:flex;gap:4px}#touch .touchgroup:last-child{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}#touch .touch{min-width:0;width:100%;min-height:46px;padding:3px 0;border-radius:9px;font-size:13px}#touch .touch.super,#touch .touch.drift{min-width:0;font-size:9px}#touch .touch small{font-size:8px}#touch .touchgroup:first-child .touch{height:94px;font-size:19px}.hud-bottom{bottom:106px}}
+
+/* APEX 7 — race challenges and heightened driving feedback */
+#challengePanel{position:absolute;top:173px;left:25px;width:258px;padding:13px;background:#071325cc;border:1px solid #58d7e259;border-radius:13px;backdrop-filter:blur(10px);box-shadow:0 9px 30px #0006}
+.challengeTop,.challengeFooter{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:10px;letter-spacing:1.3px;font-weight:950;color:#79ecf1}
+.challengeTop{padding-bottom:9px;border-bottom:1px solid #8bbdd344}.challengeTop span:last-child{color:#ffe59d}.challengeRow{display:flex;gap:9px;align-items:center;padding:8px 1px 6px;border-bottom:1px solid #ffffff16}
+.challengeBadge{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:#23435a;color:#a9cedc;font-size:10px;font-weight:950}
+.challengeRow.done .challengeBadge{background:#56f4c5;color:#073b31}.challengeBody{flex:1;min-width:0}.challengeName{font-size:10px;font-weight:850;letter-spacing:.4px;color:#e2f3ff}.challengeRow.done .challengeName{color:#86eac9}.challengeProgress{font-size:9px;color:#83a9c5;margin-top:3px;letter-spacing:.4px}.challengeTrack{height:3px;background:#1d3a50;border-radius:4px;margin-top:4px;overflow:hidden}.challengeTrack>div{height:100%;background:linear-gradient(90deg,#26a8ed,#65ffcc)}.challengeFooter{padding-top:10px;letter-spacing:.4px;font-size:9px;color:#ffcb8b}.challengeFooter span:last-child{font-size:20px;font-style:italic;color:#ffe28b}
+#dangerBanner{position:absolute;top:19%;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:2.4px;font-weight:1000;color:#ffbf90;text-shadow:0 2px 8px #000;white-space:nowrap;transition:opacity .2s;opacity:0}
+.bar.health>div{background:linear-gradient(90deg,#f43c61,#ffce75,#62e8c1)}.finishMissions{font-size:12px;color:#77f1d5;font-weight:850;margin:5px 0 10px}.raceHot #vignette{box-shadow:inset 0 0 95px #df304737}#hud.pulse .hudblock:first-child{box-shadow:0 0 22px #6effd826}
+@media(max-width:1080px){#challengePanel{top:175px;width:226px}.challengeRow{padding:6px 0}}
+@media(max-width:720px){#challengePanel{top:auto;bottom:164px;left:8px;width:min(230px,60vw);padding:8px}.challengeTop{padding-bottom:4px;font-size:8px}.challengeRow{padding:3px 0}.challengeRow:nth-child(n+3){display:none}.challengeBody .challengeName{font-size:9px}.challengeProgress{font-size:8px;margin-top:0}.challengeFooter{padding-top:4px}.challengeFooter span:last-child{font-size:15px}#dangerBanner{top:23%;font-size:9px;letter-spacing:1px}.bars{width:140px!important}.barlabel{font-size:8px!important}.boosthelp{display:none}}
+@media(max-height:620px) and (min-width:721px){#challengePanel{top:159px;width:210px}.challengeRow{padding:4px 0}.challengeTop{padding-bottom:5px}.challengeFooter{padding-top:5px}}
+
+/* V8 progression, missions and police UI */
+.paintPicks{display:flex;gap:8px;align-items:center;margin:7px 0 12px}.paintPick{width:28px;height:28px;flex:none;border-radius:50%;border:2px solid #a0b3c355;box-shadow:inset 0 -5px 5px #0005;transition:transform .16s}.paintPick:hover{transform:scale(1.14)}.paintPick.active{border:3px solid #fff;box-shadow:0 0 0 2px #80fff9,0 0 15px #6affed7d}
+
+.careerStats{display:flex;justify-content:space-between;gap:9px;background:#0d2037c9;padding:10px 12px;border:1px solid #78d9d65b;border-radius:9px;font-size:11px;font-weight:850;color:#a4dbe9}.careerStats b{color:#fff;font-size:13px}.upgrades{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:10px}.upgrades button{color:#d1f9ff;background:#14293fdb;border:1px solid #7aafc567;border-radius:8px;font-size:10px;line-height:1.6;font-weight:850;padding:10px 4px;min-width:0}.upgrades button:hover:not(:disabled){border-color:#63fbe0;background:#1c4150}.upgrades button:disabled{opacity:.53;cursor:not-allowed}.upgrades button strong{color:#8dffe2;display:block;font-size:11px}.eventDescription{margin-top:9px;color:#c4d9ef;font-size:11px;border-left:3px solid #fa7386;padding:6px 9px;background:#1422399c}.bar.burst>div{background:linear-gradient(90deg,#72dcff,#fff0b9,#ff7c59)}#policeHud{display:none;position:absolute;top:12px;left:50%;transform:translateX(-50%);background:#110b20dc;border:1px solid #ff8b9ca9;border-radius:10px;text-align:center;padding:9px 14px;min-width:180px;box-shadow:0 0 30px #d3243d55;animation:policePulse 1s infinite alternate}#policeHud b{display:block;color:#ffb2c0;letter-spacing:2px;font-size:16px}#policeHud span{font-size:9px;color:#cad7f8;font-weight:850;letter-spacing:1.5px}.policeMeter{height:6px;border-radius:5px;background:#364459;margin-top:6px;overflow:hidden}.policeMeter div{height:100%;width:0;background:linear-gradient(90deg,#ffb55d,#ff3d5f)}@keyframes policePulse{from{border-color:#fb4e7db0}to{border-color:#72b2ffda}}.finishReward{padding:12px;border:1px solid #5bdec58c;background:#083d3aa6;color:#99ffe5;font-size:15px;font-weight:950;border-radius:8px;margin:13px 0}.bar.burst{height:9px}@media(max-width:960px){.upgrades button{font-size:9px}#policeHud{top:43px}#hud .hud-top .hudblock:nth-child(4){display:none}}@media(max-width:650px){.careerStats{font-size:9px}.upgrades{gap:4px}.upgrades button{padding:7px 2px;font-size:8px}.upgrades button strong{font-size:9px}#policeHud{top:144px;left:12px;transform:none;padding:6px 11px;min-width:145px;z-index:3}#policeHud b{font-size:11px}#policeHud span{font-size:8px}.bar.burst{height:6px}.hud-top .hudblock:nth-child(5){display:none}}
+
+/* NITRO RUN 9 — RIVAL UPRISING */
+#battleHud{position:absolute;top:290px;right:24px;min-width:174px;padding:12px 13px;background:linear-gradient(130deg,#101b32df,#10273cce);border:1px solid #7ce9ff83;border-radius:11px;box-shadow:0 5px 20px #0009;backdrop-filter:blur(10px);text-align:left}
+#battleLabel{color:#72eff5;font-size:9px;font-weight:1000;letter-spacing:2px}#battleRival{display:block;font-size:17px;letter-spacing:1px;margin:4px 0 0;font-style:italic;color:white}#battleGap{display:block;font-size:23px;font-weight:1000;color:#ffe19c;font-variant-numeric:tabular-nums}#battleDetail{font-size:9px;color:#c0d4e4;letter-spacing:.7px}
+#battleHud.nemesis{border-color:#ff6b82;box-shadow:0 0 25px #f63b6a3d}#battleHud.nemesis #battleLabel{color:#ff829a}
+#knockoutHud{display:none;position:absolute;top:17%;left:50%;transform:translateX(-50%);text-align:center;background:#32101ddd;border:1px solid #ff6687b7;box-shadow:0 0 40px #d52b6f36;padding:10px 28px;border-radius:12px;white-space:nowrap}#knockoutHud span{font-size:10px;letter-spacing:2px;font-weight:1000;color:#ffb9c8}#knockoutHud strong{display:block;font-size:35px;line-height:1.2;font-weight:1000;color:white;font-variant-numeric:tabular-nums}#knockoutHud small{font-size:9px;color:#ffcaaf;letter-spacing:1.1px;font-weight:900}
+.rivalrow.eliminated{opacity:.35;text-decoration:line-through}.rivalrow.nemesis{color:#ff9ba9}.rivalrow .gap{font-size:10px;white-space:nowrap;font-variant-numeric:tabular-nums}.garageRivalNote{margin-top:12px;padding:10px 13px;border:1px solid #b58dff7a;background:#1c1b3d9c;border-radius:9px;color:#d7dafa;font-size:11px;line-height:1.6}.garageRivalNote b{color:#a0fff0}
+@media(max-width:1080px){#battleHud{right:14px;top:254px;padding:7px;min-width:130px}#battleRival{font-size:13px}#battleGap{font-size:18px}}
+@media(max-width:650px){#battleHud{top:182px;right:7px;min-width:113px;padding:6px;background:#0b182cd9}#battleLabel{font-size:7px;letter-spacing:.6px}#battleRival{font-size:11px}#battleGap{font-size:16px}#battleDetail{font-size:8px}#knockoutHud{top:135px;left:50%;padding:5px 13px}#knockoutHud strong{font-size:22px}#knockoutHud span{font-size:8px}#rivals .rivalrow:nth-child(n+6){display:none}.garageRivalNote{font-size:10px}}
+@media(max-height:680px) and (min-width:650px){#battleHud{top:270px}}
+</style></head><body>
+<canvas id="game" aria-label="Real-time ARCADE PHYSICS / 3D GRAND PRIX race"></canvas><canvas id="speedFX"></canvas><div id="vignette"></div><div id="flash"></div><div id="toast" role="status"></div><div id="countdown"></div>
+<header id="top"><div class="logo">NITRO RUN <span>9</span><small>RIVAL UPRISING · 3D RACING</small></div><div class="topright"><button class="smallbtn" id="camBtn" title="Toggle chase and hood camera">CAM: CHASE [C]</button><button class="smallbtn" id="soundBtn">♪ SOUND ON</button><button class="smallbtn" id="pauseBtn" style="display:none">Ⅱ PAUSE</button></div></header>
+<div id="hud"><div class="hud-top"><div class="hudblock"><div class="micro">POSITION</div><div class="hbig cyan"><span id="place">08</span><small> / 08</small></div></div><div class="hudblock"><div class="micro">LAP</div><div class="hbig"><span id="lap">1</span><small> / 3</small></div></div><div class="hudblock"><div class="micro">RACE TIME</div><div class="hbig" id="timer">00:00.0</div></div><div class="hudblock"><div class="micro" id="modeHudLabel">EVENT</div><div class="hbig" id="modeHudValue">GP</div></div><div class="hudblock" id="scoreBlock"><div class="micro">RACE SCORE</div><div class="hbig" id="raceScore">0</div></div></div><div class="hud-right"><div id="rivals"><div class="micro" style="margin-bottom:5px">LIVE STANDINGS</div><div id="leaderRows"></div></div><div class="minimap-box"><canvas id="minimap" width="330" height="270"></canvas></div></div><div class="hud-bottom"><div class="gauges"><div><div class="speednum" id="speed">000</div><div class="speedunit">KM/H</div></div><div><div class="micro">GEAR</div><div class="gear" id="gear">1</div></div></div><div class="bars"><div><div class="barlabel"><span>NITRO · HOLD SHIFT</span><span id="nitroNum">100%</span></div><div class="bar"><div id="nitroFill"></div></div></div><div><div class="barlabel"><span>SUPER NITRO · X</span><span id="superNum">READY</span></div><div class="bar super"><div id="superFill"></div></div></div><div><div class="barlabel"><span>CAR INTEGRITY</span><span id="healthNum">100%</span></div><div class="bar health"><div id="healthFill"></div></div></div><div class="barlabel"><span>BURST NITRO · B</span><span id="burstNum">1 / 3</span></div><div class="bar burst"><div id="burstFill"></div></div>
+<div class="boosthelp">↑ GAS · ↓ BRAKE · ← → STEER · B BURST · C CAMERA</div></div></div><aside id="challengePanel"><div class="challengeTop"><span>RACE DIRECTOR</span><span id="challengeStars">0 / 4</span></div><div id="challengeRows"></div><div class="challengeFooter"><span id="eventHint">FIGHT FOR THE PODIUM</span><span id="comboNum">×1.0</span></div></aside><div id="dangerBanner"></div><div id="battleHud" aria-live="polite"><div id="battleLabel">RIVAL BATTLE</div><strong id="battleRival">MAVERICK</strong><span id="battleGap">+0.0 S</span><div id="battleDetail">HUNT THE OPPONENT</div></div><div id="knockoutHud" aria-live="polite"><span>☠ NEXT ELIMINATION</span><strong id="knockoutTime">00:20</strong><small id="knockoutCount">7 CARS ALIVE</small></div><div id="policeHud" aria-live="polite"><b id="heatStatus">🚨 HEAT 1</b><span id="heatDetail">POLICE IN PURSUIT</span><div class="policeMeter"><div id="bustFill"></div></div></div></div>
+<div id="garage"><section class="garagePanel"><div class="eyebrow">NITRO RUN 9 • RIVAL UPRISING</div><h1 class="headline">OWN THE<br><i>APEX.</i></h1><p class="strap">Three 3D circuits. Six race modes. Aggressive, faster AI opponents with distinct racing styles. Elimination knockout, one-on-one duels, Nemesis battles, rival gap telemetry and police pursuits.</p><div class="sectionlabel">01 / CHOOSE YOUR MACHINE</div><div class="cars" id="carPicks"></div><div class="garageStat"><span id="specLabel">MAX SPEED</span><div class="statbars" id="specBars"></div><strong id="specValue">340 KM/H</strong></div><div class="sectionlabel">02 / PAINT &amp; PERSONALIZE</div><div id="paintPicks" class="paintPicks" aria-label="Vehicle paint selection"></div><div class="sectionlabel">03 / BUILD YOUR LEGACY</div>
+<div id="careerStatus" class="careerStats" aria-live="polite"><span>◈ BANK <b id="bankLabel">0</b></span><span>★ REP <b id="repLabel">0</b></span><span>🏁 WINS <b id="winsLabel">0</b></span></div>
+<div class="upgrades" id="upgrades"><button data-upgrade="engine" type="button"></button><button data-upgrade="grip" type="button"></button><button data-upgrade="nitro" type="button"></button></div>
+<div class="sectionlabel">04 / CIRCUIT &amp; EVENT</div><div class="sectionlabel">DRIVING STYLE</div><div class="driveModes" role="group" aria-label="Handling mode"><button id="gripMode" class="modeChoice selectedMode" type="button">TRACK GRIP <small>Sharper, stable corners</small></button><button id="driftMode" class="modeChoice" type="button">STREET DRIFT <small>More slide and countersteer</small></button></div><div class="options"><div class="opt"><select id="trackSelect" aria-label="Track"><option value="alpine">⛰ ALPINE VELOCITY GP</option><option value="marina">🌆 MARINA NIGHT RUSH</option><option value="summit" selected>⚡ SUMMIT RAZOR · 5KM EXTREME</option></select></div><div class="opt"><select id="difficulty" aria-label="Difficulty"><option value="rookie">ROOKIE</option><option value="pro" selected>PRO RACER</option><option value="legend">LEGEND</option><option value="nightmare">NIGHTMARE / ELITE AI</option></select></div></div>
+<div class="sectionlabel">EVENT TYPE · CHANGE THE OBJECTIVE</div>
+<div class="options"><div class="opt"><select id="eventSelect" aria-label="Event type"><option value="circuit">🏆 GRAND PRIX · 3 LAPS</option><option value="time">⏱ TIME ATTACK · BEAT THE CLOCK</option><option value="drift">◈ DRIFT TRIAL · SCORE CHALLENGE</option><option value="pursuit">🚨 HIGH HEAT PURSUIT · 2 LAPS</option><option value="duel">⚔ RIVAL DUEL · HEAD-TO-HEAD</option><option value="elimination">☠ ELIMINATION · LAST PLACE OUT</option></select></div><div class="opt"><select id="wagerSelect" aria-label="Rival side bet"><option value="0">NO SIDE BET</option><option value="1000">RIVAL WAGER · 1,000</option><option value="3000">RIVAL WAGER · 3,000</option></select></div></div>
+<div id="eventDescription" class="eventDescription">Choose a race type. Win events to buy upgrades.</div><div class="garageRivalNote"><b>UPGRADED AI:</b> Seven faster rivals, corner-aware braking, clean overtakes, tactical drafting, and grudge-driven Nemesis battles. <b>PRO</b> is now a serious challenge; try ROOKIE first.</div><div id="trackInfo" class="guide" style="margin-top:8px;color:#86eff0;font-weight:850">CIRCUIT DATA LOADING</div><button class="start" id="raceBtn">START EVENT →</button><div class="guide"><b>KEYS</b> WASD / ARROWS = DRIVE &nbsp;·&nbsp; SHIFT = NITRO &nbsp;·&nbsp; X = SUPER BOOST &nbsp;·&nbsp; Z = DRIFT &nbsp;·&nbsp; SPACE = PAUSE<br>NEW IN V9: Fight quicker rivals, trigger NEMESIS rivalries, survive elimination rounds, or race an elite one-on-one duel. B = Burst, X = Super Nitro, Shift = Nitro, Z = Drift.</div></section></div>
+<div id="carPlate"><div class="plateName" id="plateName">VORTEX GT-R</div><div class="plateSub" id="plateSub">BALANCED SUPERSPORT</div></div>
+<div id="pauseOverlay"><section class="modal"><div class="eyebrow">RACE CONTROL</div><h2>RACE<br>PAUSED.</h2><p>Your competitors are frozen in place. Get back on track when ready.</p><div class="modalActions"><button class="primary" id="resumeBtn">RESUME RACE</button><button id="restartBtn">RESTART</button><button id="garageBtn">GARAGE</button></div></section></div>
+<div id="finishOverlay"><section class="modal"><div class="eyebrow" id="finishKicker">CHECKERED FLAG</div><h2 id="finishTitle">RACE<br>COMPLETE.</h2><p id="finishDesc">You made it to the line.</p><div id="finishMissions" class="finishMissions"></div><div id="finishReward" class="finishReward"></div><div class="finishGrid"><div><small>FINAL PLACE</small><strong id="finalPlace">1 / 8</strong></div><div><small>RACE TIME</small><strong id="finalTime">0:00</strong></div><div><small>BEST LAP</small><strong id="bestLap">0:00</strong></div></div><div class="modalActions"><button class="primary" id="againBtn">RACE AGAIN</button><button id="finishGarageBtn">CHANGE CAR / TRACK</button></div></section></div>
+<div id="touch"><div class="touchgroup"><button class="touch" data-control="left">◀<small>LEFT</small></button><button class="touch" data-control="right">▶<small>RIGHT</small></button></div><div class="touchgroup"><button class="touch brake" data-control="brake">▮▮<small>BRAKE</small></button><button class="touch" data-control="gas">▲<small>GAS</small></button><button class="touch drift" data-control="drift" aria-label="Hold to drift">DRIFT<small>[Z]</small></button><button class="touch nitro" data-control="nitro">⚡<small>NITRO</small></button><button class="touch burst" data-control="burst">✦<small>BURST</small></button><button class="touch super" data-control="super" id="superTouch">SUPER<small>BOOST</small></button></div></div>
+<div id="support"><section><h2>3D GRAPHICS UNAVAILABLE</h2><p>This version requires WebGL to render its 3D race circuit and cars. Please open the file in a current Chrome, Edge, Safari or Firefox browser and enable hardware acceleration.</p></section></div>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id), canvas=$('game'), fx=$('speedFX'),fxctx=fx.getContext('2d'),mapCanvas=$('minimap'),mapCtx=mapCanvas.getContext('2d');
+let gl;try{gl=canvas.getContext('webgl',{alpha:false,antialias:true,depth:true,powerPreference:'high-performance'})||canvas.getContext('experimental-webgl')}catch(e){}if(!gl){$('support').style.display='grid';return;}
+const TAU=2*Math.PI,clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),mix=(a,b,t)=>a+(b-a)*t,lerp=mix, rnd=(a,b)=>Math.random()*(b-a)+a, posmod=(n,m)=>((n%m)+m)%m;
+const CARS=[{id:'vortex',name:'VORTEX GT-R',type:'BALANCED SUPERSPORT',color:[.09,.89,.94],max:345,acc:1.02,turn:1.10,boost:1,shape:0},{id:'phantom',name:'PHANTOM X',type:'HYPERCAR / TOP SPEED',color:[.98,.20,.31],max:390,acc:1.13,turn:.91,boost:1.16,shape:1},{id:'reign',name:'REIGN R-1',type:'GRAND PRIX / CORNERING',color:[1,.76,.17],max:335,acc:.97,turn:1.31,boost:.98,shape:2},{id:'spectre',name:'SPECTRE EV',type:'ELECTRIC / EXPLOSIVE',color:[.66,.43,1],max:368,acc:1.27,turn:1.06,boost:1.21,shape:3}];
+let handling='grip',selected=0,trackName='summit',difficulty='pro',eventMode='circuit',state='garage',soundOn=true,view=0,now=0,last=performance.now(),raceTime=0,countdown=0,toastLeft=0,flashTime=0,shake=0,camera=[0,0,0],cameraTarget=[0,0,0],fpsDT=.016,currentStage=0;
+let currentBet=0,lastEventWon=false,knockoutAt=0,knockoutInterval=0,knockoutCount=0,eliminatedPlayer=false,rivalRaceFinish=false,player={},bots=[],cops=[],raceEvents=[],challenges=[],challengeDirty=true,hudChallengeTime=0,raceWarning='',warningTime=0,stormFlash=0,path=[],length=1,trackMesh=null,envMesh=null,decorMesh=null,roadMesh=null,treeMesh=null,treePositions=[],standMesh=null,terrainMesh=null,signMesh=null;
+let keys=new Set(),touch=new Set(),input={left:false,right:false,gas:false,brake:false,nitro:false,drift:false};
+const CAR_NAMES=['YOU','MAVERICK','VIPER','NOVA','BLAZE','GHOST','RAVEN','TITAN'];
+// Standalone WebGL racing renderer: no CDN dependencies or external game assets.
+const VS=`attribute vec3 aPos;attribute vec3 aNormal;attribute vec3 aColor;attribute float aGlow;attribute float aPaint;uniform mat4 uModel;uniform mat4 uPV;varying vec3 vPos;varying vec3 vNormal;varying vec3 vColor;varying float vGlow;varying float vPaint;void main(){vec4 w=uModel*vec4(aPos,1.);vPos=w.xyz;vNormal=normalize(mat3(uModel)*aNormal);vColor=aColor;vGlow=aGlow;vPaint=aPaint;gl_Position=uPV*w;}`;
+const FS=`precision mediump float;varying vec3 vPos;varying vec3 vNormal;varying vec3 vColor;varying float vGlow;varying float vPaint;uniform vec3 uCarPaint;uniform vec3 uEye;uniform vec3 uSun;uniform vec3 uFog;uniform float uFogRange;uniform float uNight;uniform float uPulse;void main(){vec3 n=normalize(vNormal),v=normalize(uEye-vPos),sun=normalize(uSun);float lambert=max(dot(n,sun),0.);float shadow=.38+.62*lambert;vec3 h=normalize(sun+v);float glint=pow(max(dot(n,h),0.),57.)*.82+pow(max(dot(n,h),0.),8.)*.08;vec3 base=mix(vColor,uCarPaint,vPaint);float fres=pow(1.-max(dot(n,v),0.),3.);vec3 col=base*(shadow+(.16-uNight*.05))+glint*vec3(.88,.91,1.)+fres*.12*base+base*vGlow*(1.7+uPulse*.24);float d=length(vPos.xz-uEye.xz);float fog=clamp((d-100.)/uFogRange,0.,.91);col=mix(col,uFog,fog);col=col/(col+vec3(.38));col=pow(col,vec3(.89));gl_FragColor=vec4(col,1.);}`;
+function compile(type,source){let sh=gl.createShader(type);gl.shaderSource(sh,source);gl.compileShader(sh);if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(sh));return sh}
+let program;try{program=gl.createProgram();gl.attachShader(program,compile(gl.VERTEX_SHADER,VS));gl.attachShader(program,compile(gl.FRAGMENT_SHADER,FS));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));gl.useProgram(program)}catch(e){$('support').style.display='grid';$('support').querySelector('p').textContent=e.message;return;}
+const uniforms={pv:gl.getUniformLocation(program,'uPV'),model:gl.getUniformLocation(program,'uModel'),paint:gl.getUniformLocation(program,'uCarPaint'),eye:gl.getUniformLocation(program,'uEye'),sun:gl.getUniformLocation(program,'uSun'),fog:gl.getUniformLocation(program,'uFog'),range:gl.getUniformLocation(program,'uFogRange'),night:gl.getUniformLocation(program,'uNight'),pulse:gl.getUniformLocation(program,'uPulse')};const attrs={pos:gl.getAttribLocation(program,'aPos'),norm:gl.getAttribLocation(program,'aNormal'),color:gl.getAttribLocation(program,'aColor'),glow:gl.getAttribLocation(program,'aGlow'),paint:gl.getAttribLocation(program,'aPaint')};for(let v of Object.values(attrs))gl.enableVertexAttribArray(v);gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.disable(gl.CULL_FACE);
+function ident(){let m=new Float32Array(16);m[0]=m[5]=m[10]=m[15]=1;return m}function mult(a,b){let o=new Float32Array(16);for(let c=0;c<4;c++)for(let r=0;r<4;r++)o[c*4+r]=a[r]*b[c*4]+a[r+4]*b[c*4+1]+a[r+8]*b[c*4+2]+a[r+12]*b[c*4+3];return o}function perspective(fov,asp,n,f){let m=new Float32Array(16),q=1/Math.tan(fov/2);m[0]=q/asp;m[5]=q;m[10]=(f+n)/(n-f);m[11]=-1;m[14]=2*f*n/(n-f);return m}function lookAt(e,p){let f=[e[0]-p[0],e[1]-p[1],e[2]-p[2]],fl=Math.hypot(...f)||1;f=f.map(v=>v/fl);let r=[f[2],0,-f[0]],rl=Math.hypot(...r)||1;r=r.map(v=>v/rl);let u=[f[1]*r[2]-f[2]*r[1],f[2]*r[0]-f[0]*r[2],f[0]*r[1]-f[1]*r[0]];let m=ident();m[0]=r[0];m[1]=u[0];m[2]=f[0];m[4]=r[1];m[5]=u[1];m[6]=f[1];m[8]=r[2];m[9]=u[2];m[10]=f[2];m[12]=-r[0]*e[0]-r[1]*e[1]-r[2]*e[2];m[13]=-u[0]*e[0]-u[1]*e[1]-u[2]*e[2];m[14]=-f[0]*e[0]-f[1]*e[1]-f[2]*e[2];return m}
+function carMatrix(x,y,z,yaw=0,pitch=0,roll=0,size=1){let cy=Math.cos(yaw),sy=Math.sin(yaw),cp=Math.cos(pitch),sp=Math.sin(pitch),cr=Math.cos(roll),sr=Math.sin(roll),m=ident();m[0]=size*(cy*cr+sy*sp*sr);m[1]=size*(cp*sr);m[2]=size*(-sy*cr+cy*sp*sr);m[4]=size*(-cy*sr+sy*sp*cr);m[5]=size*(cp*cr);m[6]=size*(sy*sr+cy*sp*cr);m[8]=size*sy*cp;m[9]=size*-sp;m[10]=size*cy*cp;m[12]=x;m[13]=y;m[14]=z;return m}
+function rgb(c){if(Array.isArray(c))return c;let n=parseInt(c.slice(1),16);return[(n>>16&255)/255,(n>>8&255)/255,(n&255)/255]}
+class Mesh{constructor(){this.v=[];this.buf=null;this.count=0}vert(p,n,c,g=0,paint=0){this.v.push(...p,...n,...rgb(c),g,paint)}tri(a,b,c,color,g=0,paint=0){let u=b.map((v,i)=>v-a[i]),v=c.map((q,i)=>q-a[i]),n=[u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]],norm=Math.hypot(...n)||1;n=n.map(q=>q/norm);this.vert(a,n,color,g,paint);this.vert(b,n,color,g,paint);this.vert(c,n,color,g,paint)}quad(a,b,c,d,col,g=0,paint=0){this.tri(a,b,c,col,g,paint);this.tri(a,c,d,col,g,paint)}box(x,y,z,w,h,d,col,g=0,paint=0){let l=x-w/2,r=x+w/2,b=y-h/2,t=y+h/2,n=z-d/2,f=z+d/2;this.quad([l,t,n],[l,t,f],[r,t,f],[r,t,n],col,g,paint);this.quad([l,b,n],[r,b,n],[r,b,f],[l,b,f],col,g,paint);this.quad([l,b,f],[r,b,f],[r,t,f],[l,t,f],col,g,paint);this.quad([r,b,n],[l,b,n],[l,t,n],[r,t,n],col,g,paint);this.quad([r,b,f],[r,b,n],[r,t,n],[r,t,f],col,g,paint);this.quad([l,b,n],[l,b,f],[l,t,f],[l,t,n],col,g,paint)}cyl(x,y,z,r,depth,axis,c,g=0,num=10){for(let k=0;k<num;k++){let a=k*TAU/num,b=(k+1)*TAU/num;if(axis==='x'){let v=q=>[x-depth/2,y+Math.cos(q)*r,z+Math.sin(q)*r],w=q=>[x+depth/2,y+Math.cos(q)*r,z+Math.sin(q)*r];this.quad(v(a),v(b),w(b),w(a),c,g);this.tri([x-depth/2,y,z],v(b),v(a),c,g);this.tri([x+depth/2,y,z],w(a),w(b),c,g)}else{let v=q=>[x+Math.cos(q)*r,y+Math.sin(q)*r,z-depth/2],w=q=>[x+Math.cos(q)*r,y+Math.sin(q)*r,z+depth/2];this.quad(v(a),v(b),w(b),w(a),c,g)}}}finish(){if(this.buf)return this;this.buf=gl.createBuffer();this.count=this.v.length/11;gl.bindBuffer(gl.ARRAY_BUFFER,this.buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(this.v),gl.STATIC_DRAW);this.v.length=0;return this}}
+function draw(mesh,mat,paint=[1,1,1]){if(!mesh||!mesh.count)return;gl.bindBuffer(gl.ARRAY_BUFFER,mesh.buf);const stride=11*4;gl.vertexAttribPointer(attrs.pos,3,gl.FLOAT,false,stride,0);gl.vertexAttribPointer(attrs.norm,3,gl.FLOAT,false,stride,12);gl.vertexAttribPointer(attrs.color,3,gl.FLOAT,false,stride,24);gl.vertexAttribPointer(attrs.glow,1,gl.FLOAT,false,stride,36);gl.vertexAttribPointer(attrs.paint,1,gl.FLOAT,false,stride,40);gl.uniformMatrix4fv(uniforms.model,false,mat);gl.uniform3fv(uniforms.paint,paint);gl.drawArrays(gl.TRIANGLES,0,mesh.count)}
+// APEX 6: hand-built polygonal sports cars, original geometry — no copyrighted game assets.
+// Each car uses a sculpted cross-section hull, translucent-look glass, wheel wells,
+// ventilated brake discs, diffuser, splitter, DRLs, scoops, badges and aerodynamic pieces.
+function buildCar(shape){
+ const m=new Mesh(),PAINT=[.72,.78,.82],S=[.025,.033,.052],CARBON=[.044,.051,.068],GLASS=[.038,.12,.195],WIN=[.019,.039,.069],METAL=[.41,.48,.55],CHROME=[.81,.89,.94],LIGHT=[.80,.95,1],R=[1,.09,.115];
+ let f1=shape===2, wide=shape===1?1.10:shape===3?1.02:1, L=shape===1?5.25:4.95, fw=1.97*wide;
+ const paint=(a,b,c,d)=>m.quad(a,b,c,d,PAINT,.02,1), panel=(a,b,c,d,col)=>m.quad(a,b,c,d,col);
+ const ring=(z,w,lo,hi)=>({z,w,lo,hi});
+ if(!f1){
+   const stations=[ring(-L*.5,.63,.31,.48),ring(-L*.40,.93,.30,.80),ring(-L*.30,.99,.29,.93),ring(-L*.10,.94,.29,.95),ring(L*.20,1.00,.28,.89),ring(L*.37,1.05,.30,.83),ring(L*.49,.84,.34,.60)];
+   // Tapered hood, sculpted shoulders, side-sills and flowing fenders.
+   for(let k=0;k<stations.length-1;k++){let a=stations[k],b=stations[k+1];
+     paint([-a.w,a.hi,a.z],[a.w,a.hi,a.z],[b.w,b.hi,b.z],[-b.w,b.hi,b.z]);
+     for(let side of [-1,1]){
+       paint([side*a.w,a.lo,a.z],[side*a.w,a.hi,a.z],[side*b.w,b.hi,b.z],[side*b.w,b.lo,b.z]);
+       panel([side*a.w,a.lo,a.z],[side*b.w,b.lo,b.z],[side*b.w*.91,.24,b.z],[side*a.w*.91,.24,a.z],CARBON);
+     }
+   }
+   // Three-level fender flares, sculpted side intakes and recessed air channels.
+   for(let side of [-1,1]){
+     m.box(side*fw*.53,.43,-1.58,.22,.25,.95,PAINT,.01,1);
+     m.box(side*fw*.54,.45,1.52,.20,.25,1.05,PAINT,.01,1);
+     m.box(side*.97,.57,.25,.028,.18,.72,S);
+     m.box(side*.98,.61,-.23,.025,.15,.30,CARBON);
+     panel([side*1.0,.44,.24],[side*1.045,.62,.32],[side*1.04,.66,.80],[side*.97,.39,.94],CARBON);
+     m.box(side*.91,.32,.15,.12,.11,2.6,CARBON);
+   }
+   // Separate low swept windshield, roof with bright rails and angled back glass.
+   const canopyFront=-.87, canopyTopFront=-.40, canopyTopBack=.65, canopyRear=1.25;
+   const rh=shape===1?1.42:shape===3?1.57:1.49;
+   paint([-.72,1.0,canopyFront],[.72,1.0,canopyFront],[.64,rh,canopyTopFront],[-.64,rh,canopyTopFront]);
+   panel([-.695,1.008,canopyFront-.013],[.695,1.008,canopyFront-.013],[.605,rh+.009,canopyTopFront-.009],[-.605,rh+.009,canopyTopFront-.009],GLASS);
+   paint([-.64,rh,canopyTopFront],[.64,rh,canopyTopFront],[.63,rh,canopyTopBack],[-.63,rh,canopyTopBack]);
+   panel([-.60,rh+.01,canopyTopBack],[.60,rh+.01,canopyTopBack],[.79,.99,canopyRear],[ -.79,.99,canopyRear],GLASS);
+   for(let side of [-1,1]){
+     panel([side*.73,1.00,canopyFront],[side*.62,rh,canopyTopFront],[side*.61,rh,canopyTopBack],[side*.80,.99,canopyRear],GLASS);
+     // Pillars and sectioned window seams.
+     m.box(side*.62,rh+.012,.12,.054,.026,1.02,CHROME);
+     m.box(side*.99,1.03,-.68,.23,.13,.30,CARBON);
+     m.box(side*1.07,1.06,-.73,.15,.06,.24,PAINT,0,1);
+     m.box(side*.79,.985,.24,.036,.035,1.0,METAL);
+   }
+   // Character-specific aero package and hood detailing.
+   m.box(0,.27,-L*.52,2.23,.11,.36,CARBON);
+   m.box(0,.28,L*.50,2.17,.12,.38,CARBON);
+   m.box(0,.48,-L*.5,1.48,.23,.055,S);
+   m.box(0,.50,-L*.502,.92,.08,.058,[.12,.18,.20]);
+   for(let side of [-1,1]){
+     m.box(side*.74,.48,-L*.5,.30,.21,.058,CARBON);
+     // LED lens clusters have backing and individual daytime-running-light strips.
+     m.box(side*.69,.735,-L*.498,.57,.13,.055,WIN);
+     m.box(side*.69,.76,-L*.51,.53,.056,.040,LIGHT,5);
+     m.box(side*.76,.68,-L*.513,.20,.05,.042,[.29,.84,1],3.3);
+     m.box(side*.71,.70,L*.507,.61,.145,.058,S);
+     m.box(side*.71,.71,L*.518,.56,.062,.040,R,6);
+     m.box(side*.70,.66,L*.524,.49,.03,.035,[1,.31,.18],3);
+     m.box(side*.55,.96,-1.28,.18,.025,.55,CARBON);
+     m.box(side*.54,.965,-1.28,.055,.027,.52,METAL);
+     m.box(side*.79,.83,1.47,.20,.026,.67,CARBON);
+     // Multi-part racing alloys, tires and shiny center caps.
+     for(const z of [-1.56,1.53]){
+       m.cyl(side*1.037,.49,z,.473,.345,'x',S,0,22);
+       m.cyl(side*1.229,.49,z,.312,.045,'x',[.20,.25,.30],.05,20);
+       m.cyl(side*1.259,.49,z,.250,.035,'x',[.68,.74,.80],.20,20);
+       for(let n=0;n<8;n++){let a=n*Math.PI/4,y=.49+Math.cos(a)*.157,zz=z+Math.sin(a)*.157;m.box(side*1.288,y,zz,.018,.055,.12,[.12,.16,.19])}
+       m.cyl(side*1.301,.49,z,.074,.033,'x',CHROME,.25,16);
+     }
+   }
+   m.box(0,.36,L*.508,1.31,.15,.08,CARBON);
+   m.box(0,.39,L*.51,.65,.07,.055,[.14,.16,.17]);
+   for(let side of [-1,1]){m.cyl(side*.58,.365,L*.535,.145,.040,'z',[.38,.49,.58],1.15,18)}
+   if(shape===1){
+     // Widebody hypercar: exposed wing pylons, massive aero fins, roof ram intake.
+     m.box(-.77,1.06,1.85,.09,.45,.17,CARBON);m.box(.77,1.06,1.85,.09,.45,.17,CARBON);
+     m.box(0,1.35,1.85,2.63,.11,.48,CARBON);m.box(0,1.41,1.88,2.26,.036,.33,[.47,.53,.58]);
+     m.box(0,rh+.044,.10,.48,.085,.78,CARBON);
+     for(let side of [-1,1])m.box(side*.42,1.12,-1.35,.12,.02,1.17,CARBON);
+   }else if(shape===3){
+     // EV hyper-GT: illuminated wide LED light bars and black glass roof.
+     m.box(0,.81,-L*.522,1.61,.041,.041,[.41,.94,1],5);
+     m.box(0,.72,L*.524,1.78,.059,.035,[.93,.14,1],5);
+     m.box(0,rh+.021,.21,1.15,.023,.69,WIN);
+     m.box(0,1.17,1.73,2.2,.075,.38,CARBON);
+   }else{
+     // Aerodynamic GT with floating wing and bonnet extractor vents.
+     m.box(-.74,1.065,1.84,.075,.47,.15,CARBON);m.box(.74,1.065,1.84,.075,.47,.15,CARBON);
+     m.box(0,1.35,1.84,2.17,.083,.40,CARBON);
+     for(let side of [-1,1])m.box(side*.39,.96,-1.32,.26,.025,.65,CARBON);
+   }
+ }else{
+   // Open-wheel single-seater grand prix car with nose cone, sidepods and halo.
+   m.box(0,.40,-.68,.70,.31,3.85,PAINT,0,1);
+   m.box(0,.49,-1.50,.38,.25,1.64,PAINT,0,1);
+   m.box(0,.61,.61,1.40,.30,1.65,PAINT,0,1);
+   m.box(0,.80,.42,.76,.23,.75,CARBON);
+   m.box(0,.88,-.35,.43,.05,1.02,WIN);
+   m.box(0,.49,-2.44,2.95,.12,.53,CARBON);
+   m.box(0,.56,-2.46,2.77,.035,.35,PAINT,0,1);
+   m.box(0,.61,2.25,2.7,.11,.43,CARBON);
+   m.box(0,.75,2.24,2.42,.07,.34,PAINT,0,1);
+   m.box(-.45,.60,1.95,.07,.46,.1,CARBON);m.box(.45,.60,1.95,.07,.46,.1,CARBON);
+   for(let side of [-1,1]){
+     m.box(side*.80,.49,.25,.57,.39,1.35,PAINT,0,1);
+     m.box(side*.73,.69,-.2,.19,.055,.65,CARBON);
+     m.box(side*.48,.99,-.14,.055,.30,.96,CARBON);
+     for(let z of [-1.53,1.43]){
+       m.cyl(side*1.12,.47,z,.55,.43,'x',S,0,24);
+       m.cyl(side*1.355,.47,z,.29,.040,'x',[.48,.55,.62],.15,20);
+       m.cyl(side*1.374,.47,z,.09,.045,'x',CHROME,.35,12);
+     }
+   }
+   m.box(0,1.14,-.25,.08,.15,.55,CARBON);
+   m.box(0,1.16,-.69,.06,.11,.33,CARBON);
+   m.box(0,.81,2.20,1.72,.06,.09,R,3.6);
+ }
+ return m.finish();
+}
+const carMeshes=CARS.map(c=>buildCar(c.shape));
+const TRACKS={alpine:{name:'ALPINE VELOCITY GP',sky:[.39,.53,.68],fog:[.49,.62,.71],sun:[-.62,1.2,.52],points:[[0,9,0],[-79,9,-80],[-182,12,-152],[-300,22,-147],[-386,29,-76],[-391,20,35],[-313,12,137],[-203,15,149],[-118,32,215],[0,43,253],[119,30,218],[216,14,185],[302,10,111],[329,11,-11],[268,19,-121],[161,35,-136],[96,17,-60],[50,10,38]]},marina:{name:'MARINA NIGHT RUSH',sky:[.067,.10,.20],fog:[.115,.17,.27],sun:[.18,.82,.62],points:[[0,14,0],[-112,14,-25],[-243,18,-127],[-359,26,-90],[-429,19,16],[-376,13,125],[-271,8,182],[-141,12,147],[-84,25,236],[54,32,286],[203,19,212],[313,12,167],[344,8,57],[264,13,-78],[177,31,-161],[82,27,-122],[50,14,11]]},summit:{name:'SUMMIT RAZOR — EXTREME',sky:[.16,.19,.27],fog:[.37,.30,.38],sun:[-.40,1.15,.36],points:[[0,20,0],[-80,21,-30],[-180,28,-85],[-260,45,-130],[-370,55,-130],[-470,62,-90],[-530,73,10],[-510,85,150],[-430,90,250],[-360,75,260],[-310,65,190],[-260,58,100],[-175,60,120],[-160,81,290],[-230,105,400],[-80,120,480],[70,107,430],[120,83,320],[190,79,220],[280,87,270],[400,92,375],[510,100,315],[530,88,190],[455,70,100],[350,62,35],[430,42,-65],[480,33,-210],[405,35,-320],[270,49,-340],[195,65,-265],[100,73,-175],[0,66,-250],[-115,47,-335],[-260,38,-420],[-350,30,-330],[-310,20,-210],[-220,18,-10],[-100,15,65]]}};
+function cat(a,b,c,d,t){let t2=t*t,t3=t2*t;return .5*((2*b)+(-a+c)*t+(2*a-5*b+4*c-d)*t2+(-a+3*b-3*c+d)*t3)}
+function elevationBump(fr){const bump=(mid,width,amp)=>Math.exp(-Math.pow((fr-mid)/width,2))*amp;return trackName==='summit'?bump(.17,.018,7)+bump(.355,.013,12)+bump(.71,.016,9)+bump(.86,.016,6):bump(.255,.017,4.2)+bump(.652,.015,5.1)}
+function buildPath(){let src=TRACKS[trackName].points,N=src.length,raw=[],count=N*38;for(let i=0;i<count;i++){let part=i/38,j=Math.floor(part),t=part-j,p=src[(j-1+N)%N],a=src[j],b=src[(j+1)%N],c=src[(j+2)%N],fr=i/count;raw.push({x:cat(p[0],a[0],b[0],c[0],t),y:cat(p[1],a[1],b[1],c[1],t)+elevationBump(fr),z:cat(p[2],a[2],b[2],c[2],t),d:0})}length=0;for(let i=1;i<raw.length;i++){let a=raw[i-1],b=raw[i];length+=Math.hypot(a.x-b.x,a.z-b.z,a.y-b.y);b.d=length}let a=raw[raw.length-1],b=raw[0];length+=Math.hypot(a.x-b.x,a.z-b.z,a.y-b.y);path=raw;
+for(let i=0;i<path.length;i++){let prev=path[(i-2+path.length)%path.length],next=path[(i+2)%path.length],dx=next.x-prev.x,dz=next.z-prev.z,dy=next.y-prev.y;let p=path[i];p.heading=Math.atan2(-dx,-dz);p.pitch=Math.atan2(dy,Math.hypot(dx,dz));p.curvature=0}
+for(let i=0;i<path.length;i++){let a=path[(i-3+path.length)%path.length],b=path[(i+3)%path.length],delta=Math.atan2(Math.sin(b.heading-a.heading),Math.cos(b.heading-a.heading));path[i].curvature=delta/Math.max(1,Math.hypot(a.x-b.x,a.z-b.z))}
+}
+function sample(d){let s=posmod(d,length),lo=0,hi=path.length-1;while(lo<hi){let m=(lo+hi+1)>>1;if(path[m].d<=s)lo=m;else hi=m-1}let a=path[lo],b=path[(lo+1)%path.length],span=lo===path.length-1?length-a.d:b.d-a.d,t=clamp((s-a.d)/(span||1),0,1),da=Math.atan2(Math.sin(b.heading-a.heading),Math.cos(b.heading-a.heading)),head=a.heading+da*t;return{x:mix(a.x,b.x,t),y:mix(a.y,b.y,t),z:mix(a.z,b.z,t),heading:head,pitch:mix(a.pitch,b.pitch,t),curvature:mix(a.curvature,b.curvature,t),d:s}}
+function worldPoint(d,lateral=0,h=0){let p=sample(d),rx=Math.cos(p.heading),rz=-Math.sin(p.heading);return[p.x+rx*lateral,p.y+h,p.z+rz*lateral]}
+function addWorldBox(mesh,d,l,y,w,h,depth,c,g=0){let p=sample(d),cx=p.x+Math.cos(p.heading)*l,cz=p.z-Math.sin(p.heading)*l,cy=p.y+y;
+let X=[Math.cos(p.heading)*w/2,0,-Math.sin(p.heading)*w/2],Z=[Math.sin(p.heading)*depth/2,0,Math.cos(p.heading)*depth/2],Y=[0,h/2,0];let vertex=(sx,sy,sz)=>[cx+sx*X[0]+sz*Z[0],cy+sy*Y[1],cz+sx*X[2]+sz*Z[2]];
+let a=vertex(-1,1,-1),b=vertex(1,1,-1),cc=vertex(1,1,1),dd=vertex(-1,1,1),e=vertex(-1,-1,-1),f=vertex(1,-1,-1),gg=vertex(1,-1,1),hh=vertex(-1,-1,1);mesh.quad(a,b,cc,dd,c,g);mesh.quad(e,hh,gg,f,c,g);mesh.quad(a,e,f,b,c,g);mesh.quad(dd,cc,gg,hh,c,g);mesh.quad(a,dd,hh,e,c,g);mesh.quad(b,f,gg,cc,c,g)}
+function baseTerrain(x,z){return trackName==='summit'?-23+10*Math.sin(x*.012)*Math.cos(z*.014)+4*Math.sin(x*.032+z*.02):trackName==='alpine'? -4+4*Math.sin(x*.013)*Math.cos(z*.016)+2*Math.sin(x*.032+z*.02) : -8+2.5*Math.sin(x*.009)*Math.cos(z*.017)}
+function addPine(m,x,y,z,h){let trunk=[.23,.21,.19],leaf=[.04,.20+.08*Math.random(),.14],tip=[x,y+h,z];m.box(x,y+h*.20,z,.52,h*.38,.52,trunk);for(let l=0;l<3;l++){let y0=y+h*(.22+l*.18),top=y+h*(.77+l*.12),r=h*(.26-l*.052);for(let i=0;i<7;i++){let a=i*TAU/7,b=(i+1)*TAU/7;m.tri([x+Math.cos(a)*r,y0,z+Math.sin(a)*r],[x+Math.cos(b)*r,y0,z+Math.sin(b)*r],[x,top,z],l%2?[.03,.20,.16]:leaf)}}}
+function addPalmtree(m,x,y,z,h){m.box(x,y+h*.43,z,.35,h*.86,.35,[.28,.22,.17]);for(let a=0;a<8;a++){let theta=a*TAU/8,dx=Math.cos(theta),dz=Math.sin(theta);m.tri([x,y+h,z],[x+dx*h*.34,y+h*.83,z+dz*h*.34],[x+dx*h*.50,y+h*.63,z+dz*h*.50],[.07,.36,.19])}}
+function makeWorld(){for(let m of [trackMesh,roadMesh,envMesh,decorMesh,terrainMesh,signMesh])if(m&&m.buf)gl.deleteBuffer(m.buf);
+let road=new Mesh(),decor=new Mesh(),grass=new Mesh(),sign=new Mesh(),terrain=new Mesh(),N=path.length;
+// Entire continuous circuit: asphalt, broad runoff, curbs, fencing and real start/finish.
+for(let i=0;i<N;i++){let a=path[i],b=path[(i+1)%N],nextD=i===N-1?length:b.d,A=d=>{};
+ const p=(q,lat,h)=>[q.x+Math.cos(q.heading)*lat,q.y+h,q.z-Math.sin(q.heading)*lat];
+ for(let side of [-1,1]){
+  grass.quad(p(a,side*10.9,-.09),p(b,side*10.9,-.09),p(b,side*23.0,-.42),p(a,side*23.0,-.42),[.28,.31,.30]);
+  road.quad(p(a,side*10.8,-.009),p(b,side*10.8,-.009),p(b,side*12.1,-.007),p(a,side*12.1,-.007),i%7<3?[.93,.20,.23]:[.90,.91,.96]);
+  road.quad(p(a,side*10.52,.011),p(b,side*10.52,.011),p(b,side*10.69,.011),p(a,side*10.69,.011),[.89,.91,.87],.15);
+  road.quad(p(a,side*12.1,-.055),p(b,side*12.1,-.055),p(b,side*14.9,-.09),p(a,side*14.9,-.09),[.14,.34,.46]);
+  if(i%4===0){let ra=worldPoint(a.d,side*16,.55),rb=worldPoint(nextD,side*16,.55);decor.quad([ra[0],ra[1]+.16,ra[2]],[rb[0],rb[1]+.16,rb[2]],[rb[0],rb[1]-.06,rb[2]],[ra[0],ra[1]-.06,ra[2]],[.72,.80,.86]);}
+ }
+ road.quad(p(a,-10.8,0),p(a,10.8,0),p(b,10.8,0),p(b,-10.8,0),i%13<6?[.104,.119,.142]:[.109,.121,.137]);
+ if(i%25===0){road.quad(p(a,-.035,.019),p(a,.035,.019),p(b,.035,.019),p(b,-.035,.019),[.24,.28,.27])}
+ if(i%22===0){for(let lat of [-1,1])addWorldBox(decor,a.d,lat*16,1.05,.38,2.2,.42,[.40,.47,.49]);}
+ if(i<2){for(let k=0;k<14;k++){let lat=-10.5+k*1.5;road.quad(p(a,lat,.041),p(a,lat+1.5,.041),p(b,lat+1.5,.041),p(b,lat,.041),k%2===i%2?[.96,.97,.98]:[.055,.060,.071])}}
+ }
+// Terrain grid and environmental landscaping.
+let extent=trackName==='summit'?790:630,step=trackName==='summit'?37:30;for(let z=-extent;z<extent;z+=step)for(let x=-extent;x<extent;x+=step){let color=trackName==='summit'?[.27+.06*Math.sin(x*.014),.19+.03*Math.sin(z*.017),.19]:trackName==='alpine'?[.13+.02*Math.sin(x*.03),.29+.05*Math.sin(z*.017),.19]:[.08,.16,.19];let q=(a,b)=>[a,baseTerrain(a,b),b];terrain.quad(q(x,z),q(x+step,z),q(x+step,z+step),q(x,z+step),color)}
+let seed=89173;const random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};
+for(let j=0;j<240;j++){let d=j/240*length+random()*20,side=random()<.5?-1:1,offset=27+random()*105,p=worldPoint(d,offset*side,-.5),h=6+random()*11,ground=baseTerrain(p[0],p[2]);if(ground>p[1]-1)continue;if(trackName==='alpine')addPine(grass,p[0],Math.max(ground,p[1]-9),p[2],h);else if(trackName==='summit'){if(j%5===0)addPine(grass,p[0],Math.max(ground,p[1]-9),p[2],h*.55)}else if(j%3===0)addPalmtree(grass,p[0],Math.max(ground,p[1]-10),p[2],h*.8)}
+// Stadium stands, pit garages, safety barriers and a monumental start gantry.
+for(let side of [-1,1]){
+ for(let i=0;i<16;i++){let d=55+i*6;for(let row=0;row<7;row++){let lat=side*(29+row*2.7),p=worldPoint(d,lat,-2.2+row*.8);addWorldBox(sign,d,lat,Math.max(-1,row*.8-2.2),5.2,.55,5.5,[.21,.30,.42]);if((i+row)%3!==0)addWorldBox(sign,d,lat,Math.max(-.5,row*.8-1.68),2.5,.22,1.0,(i+row)%4===0?[.87,.19,.22]:[.25,.66,.85]);}}
+ for(let j=0;j<20;j++){let d=22+j*8;addWorldBox(sign,d,side*16,.7,.33,2.0,.34,[.52,.61,.68]);addWorldBox(sign,d,side*16,2.0,.18,.16,5.3,[.92,.95,1]);}
+}
+for(let i=0;i<15;i++){let d=57+i*13;addWorldBox(sign,d,-54,4,25,8,12,[.21,.28,.34]);addWorldBox(sign,d,-54,7.8,26,.6,12,[.91,.23,.22]);addWorldBox(sign,d,-54,4.4,20,3,12,[.12,.23,.31]);}
+for(let side of [-1,1]){addWorldBox(sign,8,side*14,6.4,2.0,13,.8,[.79,.84,.91]);addWorldBox(sign,8,side*12,7.9,1.3,.35,3.2,[.10,.74,.84],2.3)}addWorldBox(sign,8,0,13.1,30,1.9,1.8,[.12,.20,.28]);addWorldBox(sign,8,0,13.4,24,1.1,2.0,[.07,.85,.82],2.1);
+for(let j=0;j<5;j++)addWorldBox(sign,95+j*10,13,2.3,.65,4.6,.65,[.93,.93,.94]);
+// Highly visible track floodlights and LED flags.
+for(let j=0;j<46;j++){let d=j/46*length;for(let side of [-1,1]){addWorldBox(sign,d,side*20,5,.48,10,.48,[.32,.41,.46]);addWorldBox(sign,d,side*19.1,9.9,2.2,.33,.9,trackName==='marina'?[.40,.85,1]:trackName==='summit'?[1,.58,.44]:[.96,.97,.89],2.2)}}
+if(trackName==='marina'){for(let j=0;j<155;j++){let d=j/155*length,side=(j%2?1:-1),lat=(35+random()*130)*side,p=worldPoint(d,lat,-12),h=12+random()*85,w=9+random()*12,ground=baseTerrain(p[0],p[2]);grass.box(p[0],ground+h/2,p[2],w,h,w,[.09+random()*.05,.12+random()*.08,.20+random()*.09]);for(let y=3;y<h;y+=4)grass.box(p[0]+(side>0?w/2+.05:-w/2-.05),ground+y,p[2],.14,.42,w*.76,j%3?[.56,.72,.92]:[1,.23,.44],1.5)}}
+// Distant mountain silhouettes surrounding the alpine circuit.
+else{for(let j=0;j<(trackName==='summit'?55:46);j++){let theta=j*TAU/(trackName==='summit'?55:46),r=(trackName==='summit'?700:420)+random()*240,cx=Math.cos(theta)*r,cz=Math.sin(theta)*r,height=80+random()*140;let ra=20+random()*60;for(let k=0;k<8;k++){let a=k*TAU/8,b=(k+1)*TAU/8;terrain.tri([cx+Math.cos(a)*ra,-9,cz+Math.sin(a)*ra],[cx+Math.cos(b)*ra,-9,cz+Math.sin(b)*ra],[cx, height,cz],trackName==='summit'?(j%2?[.40,.26,.24]:[.51,.36,.30]):(j%3?[.27,.35,.35]:[.40,.43,.44]))}}}
+// Arcadey but readable markers: speed trap gantries, glowing boost strips, construction chicanes.
+for(let ev of raceEvents){let d=ev.fr*length;
+ if(ev.kind==='roadblock'){addWorldBox(sign,d,ev.lat,.7,6.5,1.25,1.7,[.08,.12,.22]);for(let k=-1;k<=1;k++){addWorldBox(sign,d,ev.lat+k*1.6,1.47,1.05,.33,.55,k===0?[.90,.13,.22]:[.16,.46,1],3.7)}addWorldBox(sign,d,ev.lat,.08,7,.05,2.6,[.82,.22,.19],1.5)}
+ if(ev.kind==='speed'){for(let side of [-1,1])addWorldBox(sign,d,side*12.5,5.2,.65,10.4,.65,[.68,.76,.81]);addWorldBox(sign,d,0,10.3,26,.9,1.6,[.14,.88,.97],2.6);addWorldBox(sign,d,0,9.7,13,.7,1,[.07,.17,.24]);for(let j=0;j<7;j++)addWorldBox(sign,d,-9+j*3,9.8,.95,.19,.55,[.97,.68,.28],3.4)}
+ if(ev.kind==='zoneStart'||ev.kind==='zoneEnd'){let col=ev.kind==='zoneStart'?[.42,.89,1]:[1,.52,.21];for(let side of [-1,1]){addWorldBox(sign,d,side*12,3.7,1.1,7.3,.75,col,2.6)}addWorldBox(sign,d,0,7.4,24,.8,1.0,col,2.7);addWorldBox(sign,d,0,7.45,12,.41,1.1,[.08,.13,.23]);}
+ if(ev.kind==='boost'){for(let j=0;j<7;j++){addWorldBox(sign,d+j*3,0,.055,13.4,.05,1.75,j%2?[.14,.77,1]:[.42,.24,.95],3.6);}for(let side of [-1,1])addWorldBox(sign,d,side*10.9,2.0,.75,3.8,1.4,[.31,.89,1],2.2)}
+ if(ev.kind==='hazard'){let lat=ev.lat;for(let j=-1;j<=1;j++){addWorldBox(sign,d+j*1.65,lat, .60,1.35,1.2,.65,j%2?[1,.48,.11]:[.95,.80,.45],1.5);addWorldBox(sign,d+j*1.65,lat,1.27,1.15,.16,.72,[.98,.97,.96],1.5)}for(let k=0;k<3;k++)addWorldBox(sign,d-8-k*7,lat,1.5,.55,3,.45,[1,.54,.15],1.4)}
+}
+if(trackName==='summit'){
+ // Dramatic elevated canyon gateways and a narrow-looking ridge section.
+ for(let frac of [.12,.37,.59,.82]){let d=frac*length;for(let side of [-1,1]){addWorldBox(sign,d,side*16,9.3,2.2,18,3,[.29,.20,.27]);addWorldBox(sign,d,side*17,18.5,3.5,2.3,4,[.53,.34,.34])}addWorldBox(sign,d,0,18.2,35,2,3,[.44,.29,.32]);addWorldBox(sign,d,0,19.6,19,.32,.6,[.91,.36,.29],1.4)}
+ // Warning chevrons help read very tight turns at racing speed.
+ for(let i=0;i<path.length;i+=18){let q=path[i];if(Math.abs(q.curvature)<.006)continue;let side=q.curvature>0?1:-1;addWorldBox(sign,q.d,side*13,1.8,3.6,2.1,.55,[.98,.65,.17],1.3);addWorldBox(sign,q.d,side*13,1.8,1.3,1.5,.6,[.12,.17,.22])}
+}
+terrainMesh=terrain.finish();roadMesh=road.finish();envMesh=grass.finish();decorMesh=decor.finish();signMesh=sign.finish();
+}
+function setTrack(name){trackName=name;buildPath();buildRaceEvents();makeWorld();drawMiniMap();currentStage++;if($('trackInfo'))$('trackInfo').textContent=`${(length/1000).toFixed(2)} KM / LAP · ${name==='summit'?'38 major route points · 3 crests · technical hairpins':name==='marina'?'Night city course':'Alpine grand prix'}`;}
+const store={};try{store.best=JSON.parse(localStorage.getItem('apex-rivals-records')||'{}')}catch(e){store.best={}};
+// Standalone local-save garage economy; no payments or external account.
+const SAVE_KEY='nitro-run8-career';let career={bank:15000,rep:0,wins:0,upgrades:{},paints:{}};try{let saved=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');if(saved&&typeof saved==='object')career={...career,...saved,upgrades:saved.upgrades||{},paints:saved.paints||{}}}catch(e){}
+function saveCareer(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(career))}catch(e){}}
+const PAINTS=[{name:'ELECTRIC CYAN',rgb:[.09,.89,.94]},{name:'RACING RED',rgb:[.99,.13,.23]},{name:'PEARL WHITE',rgb:[.92,.94,1]},{name:'ACID LIME',rgb:[.57,.96,.16]},{name:'ULTRA VIOLET',rgb:[.59,.33,.99]},{name:'SUNSET GOLD',rgb:[1,.65,.11]},{name:'MIDNIGHT BLUE',rgb:[.09,.17,.42]}];
+function paintOf(i=selected){let a=career.paints?.[CARS[i].id];return PAINTS[a]?.rgb||CARS[i].color}
+function choosePaint(n){if(state!=='garage')return;career.paints[CARS[selected].id]=n;saveCareer();renderPaint();paintPickers();toast('NEW PAINT · '+PAINTS[n].name,'#aeffee',1.2)}
+function renderPaint(){let selectedPaint=career.paints[CARS[selected].id];$('paintPicks').innerHTML=PAINTS.map((p,i)=>`<button type="button" class="paintPick ${selectedPaint===i?'active':''}" data-paint="${i}" title="${p.name}" aria-label="${p.name}" aria-pressed="${selectedPaint===i}" style="background:rgb(${p.rgb.map(x=>Math.floor(x*255)).join(',')})"></button>`).join('');$('paintPicks').querySelectorAll('[data-paint]').forEach(b=>b.addEventListener('click',()=>choosePaint(Number(b.dataset.paint))))}
+function tierFor(part){return clamp(Number((career.upgrades[CARS[selected].id]||{})[part])||0,0,3)}
+function upgradeCost(part){return [2500,5900,11200][tierFor(part)]||0}
+function upgradeCar(part){if(state!=='garage')return;let tier=tierFor(part),cost=upgradeCost(part);if(tier>=3)return;if(career.bank<cost){toast('NOT ENOUGH BANK · COMPLETE RACES','#ffb0b8');return}career.bank-=cost;let u=career.upgrades[CARS[selected].id]||(career.upgrades[CARS[selected].id]={});u[part]=tier+1;saveCareer();updatePlate();updateGarage();toast(part.toUpperCase()+' UPGRADED · LEVEL '+(tier+1),'#abffe6');effect('pass')}
+function updateGarage(){if(!$('careerStatus'))return;renderPaint();$('bankLabel').textContent=career.bank.toLocaleString();$('repLabel').textContent=career.rep.toLocaleString();$('winsLabel').textContent=career.wins;for(let part of ['engine','grip','nitro']){let b=document.querySelector(`[data-upgrade="${part}"]`),tier=tierFor(part);if(!b)continue;let cost=upgradeCost(part);b.innerHTML=`${part==='engine'?'⚙ ENGINE':part==='grip'?'◉ GRIP':'⚡ NITRO'} <strong>${tier===3?'MAX LEVEL':`LV ${tier} → ${tier+1}`}</strong>${tier===3?'INSTALLED':`BANK ${cost.toLocaleString()}`}`;b.disabled=tier>=3||career.bank<cost;}updateEventDescription()}
+function updateEventDescription(){if(!$('eventDescription'))return;let descriptions={circuit:'🏆 RACE EVOLVED: seven faster, tactically smarter AI rivals over three laps.',time:'⏱ One-lap solo time trial. Beat the target; faster laps earn more.',drift:'◈ One lap. Chain controlled slides to reach the target drift score.',pursuit:'🚨 Two laps with police interceptors, rising HEAT, roadblocks and a BUST meter.',duel:'⚔ TWO LAPS, ONE ELITE RIVAL: win a head-to-head battle to earn a big purse.',elimination:'☠ LAST PLACE OUT: the slowest remaining driver is eliminated periodically. Survive to the finish!'};$('eventDescription').textContent=descriptions[eventMode]||descriptions.circuit;}
+const LAPS_BY_MODE={circuit:3,time:1,drift:1,pursuit:2,duel:2,elimination:3};function targetDrift(){return Math.floor((trackName==='summit'?2200:1250)*(difficulty==='rookie'?.65:difficulty==='pro'?1:difficulty==='legend'?1.45:1.9))}
+function targetTime(){return length/(trackName==='summit'?48:51)*(difficulty==='rookie'?1.75:difficulty==='pro'?1.42:difficulty==='legend'?1.23:1.12)}
+
+function fmt(t){let min=Math.floor(t/60),sec=Math.floor(t%60),tenths=Math.floor(t*10%10);return `${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}.${tenths}`}
+const MISSION_LIST={
+ alpine:[['apex','CLEAN APEX CORNERS',4],['near','THREAD NEAR MISSES',3],['air','AIRBORNE DISTANCE',22],['pass','OVERTAKE RIVALS',4]],
+ marina:[['speed','CRUSH THE SPEED TRAP',300],['slip','DRAFT A RIVAL (SEC)',8],['near','THREAD NEAR MISSES',4],['pass','OVERTAKE RIVALS',5]],
+ summit:[['speed','HIT THE SUMMIT SPEED TRAP',320],['apex','MASTER THE HAIRPINS',6],['air','AIRBORNE DISTANCE',40],['near','SURVIVE NEAR MISSES',5]]};
+const DIFFICULTIES={
+ rookie:{pace:-52,racecraft:.75,threshold:.82,cornerG:43,cornerFloor:137,accel:94,reaction:.83},
+ pro:{pace:-9,racecraft:1.16,threshold:1,cornerG:96,cornerFloor:272,accel:120,reaction:1.1},
+ legend:{pace:55,racecraft:1.42,threshold:1.11,cornerG:116,cornerFloor:277,accel:145,reaction:1.25},
+ nightmare:{pace:87,racecraft:1.74,threshold:1.19,cornerG:145,cornerFloor:312,accel:159,reaction:1.42}};
+function buildRaceEvents(){raceEvents=[];let speedGates=trackName==='summit'?[.15,.45,.77]:[.31,.68],boostGates=trackName==='summit'?[.07,.305,.63,.89]:[.19,.52,.82],hazards=trackName==='summit'?[.09,.215,.40,.54,.69,.84,.955]:trackName==='marina'?[.25,.50,.75]:[.33,.61];
+ for(let fr of speedGates)raceEvents.push({kind:'speed',fr,usedLap:0});raceEvents.push({kind:'zoneStart',fr:.372,usedLap:0},{kind:'zoneEnd',fr:.408,usedLap:0});for(let fr of boostGates)raceEvents.push({kind:'boost',fr,usedLap:0});for(let i=0;i<hazards.length;i++)raceEvents.push({kind:'hazard',fr:hazards[i],lat:(i%2===0?-4.3:4.3),usedLap:0});if(eventMode==='pursuit'){for(let j=0;j<3;j++)raceEvents.push({kind:'roadblock',fr:[.24,.52,.83][j],lat:j%2?4.3:-4.3,usedLap:0})}raceEvents.sort((a,b)=>a.fr-b.fr)}
+function resetChallenges(){let dif=DIFFICULTIES[difficulty]||DIFFICULTIES.pro;let taskList=eventMode==='time'?[['speed','HIT TARGET SPEED',trackName==='summit'?305:290],['apex','NAIL FAST APEXES',4],['air','COMPLETE JUMP DISTANCE',22],['distance','COVER CIRCUIT DISTANCE',Math.floor(length*.75)]]:eventMode==='drift'?[['drift','DRIFT STYLE POINTS',Math.floor(targetDrift()*.60)],['apex','LINK CLEAN APEXES',3],['air','GET AIRBORNE',16],['speed','REACH DRIFT TOP SPEED',240]]:eventMode==='duel'?[['pass','OUTRACE YOUR RIVAL',1],['apex','MASTER HIGH-SPEED CORNERS',3],['near','CLOSE RACING NEAR MISS',1],['speed','HIT ELITE SPEED',315]]:eventMode==='elimination'?[['pass','FIGHT FOR POSITION',3],['apex','STAY CLEAN THROUGH CORNERS',4],['near','SURVIVE NEAR MISSES',2],['speed','SHOW YOUR PACE',300]]:MISSION_LIST[trackName];challenges=taskList.map(([key,label,target])=>({key,label,target:key==='speed'?Math.floor(target*dif.threshold):target,progress:0,done:false}));challengeDirty=true;hudChallengeTime=0;}
+function addMission(key,value=1){for(let m of challenges){if(m.key!==key||m.done)continue;m.progress=key==='speed'?Math.max(m.progress,value):Math.min(m.target,m.progress+value);if(m.progress>=m.target){m.done=true;player.score+=2800;player.nitro=clamp(player.nitro+24,0,100);player.super=clamp(player.super+20,0,100);toast('★ CHALLENGE COMPLETE · +2,800','#b9ffbd',1.65);effect('pass')}}challengeDirty=true}
+function stunt(label,points,missionKey=null,progress=1){player.combo=clamp(player.combo+.35,1,6);player.comboTimer=8.0;let award=Math.round(points*player.combo);player.score+=award;player.super=clamp(player.super+Math.min(11,award/200),0,100);earnBurst(Math.min(47,Math.max(12,points*.058))); player.bestCombo=Math.max(player.bestCombo,player.combo);if(missionKey)addMission(missionKey,progress);toast(`${label}  +${award.toLocaleString()}`,'#ffe5ab',1.15);effect('pass')}
+function breakCombo(){player.combo=1;player.comboTimer=0;}
+function raceHint(message,seconds=2){raceWarning=message;warningTime=seconds;$('dangerBanner').textContent=message;$('dangerBanner').style.opacity='1'}
+function processRaceEvents(oldD,newD){for(let ev of raceEvents){if(!intersectTrigger(oldD,newD,ev.fr))continue;let currentLap=Math.floor(newD/length)+1;if(ev.usedLap===currentLap)continue;ev.usedLap=currentLap;
+ if(ev.kind==='zoneStart'){player.zoneStart=raceTime;player.zoneDistance=player.d;raceHint('◎ SPEED ZONE START — KEEP YOUR PACE!',1.8);effect('gate')}
+ if(ev.kind==='zoneEnd'&&player.zoneStart>=0){const duration=Math.max(.2,raceTime-player.zoneStart);const avg=Math.round((player.d-player.zoneDistance)/duration*3.6);player.zoneStart=-1;const target={rookie:205,pro:254,legend:282,nightmare:315}[difficulty];if(avg>=target){stunt('SPEED ZONE GOLD · '+avg+' KM/H',1000,'speed',avg);raceHint('🏅 SPEED ZONE GOLD · '+avg+' KM/H',2.4)}else{raceHint('SPEED ZONE · '+avg+' KM/H · TARGET '+target,2.0);effect('shift')}let key='apex-rivals-zone-'+trackName+'-'+difficulty;try{const old=Number(localStorage.getItem(key))||0;if(avg>old)localStorage.setItem(key,String(avg));}catch(e){}}
+ if(ev.kind==='speed'){effect('gate');addMission('speed',Math.floor(player.speed));if(player.speed>=challenges.find(x=>x.key==='speed')?.target||player.speed>295)stunt('SPEED TRAP · '+Math.floor(player.speed)+' KM/H',700);else{raceHint('SPEED TRAP · '+Math.floor(player.speed)+' KM/H',2.0);effect('shift')}}
+ if(ev.kind==='boost'){if(Math.abs(player.lat)<7.2){player.speed=clamp(player.speed+42,0,CARS[selected].max+150);player.nitro=clamp(player.nitro+19,0,100);effect('strip');stunt('BOOST STRIP!',500);flashTime=.12;shake=Math.max(shake,.7)}else raceHint('MISSED BOOST STRIP',1.3)}
+ if(ev.kind==='roadblock'&&Math.abs(player.lat-ev.lat)<3.9&&player.air===0){player.speed*=.52;player.health=Math.max(0,player.health-24);player.bust=clamp(player.bust+19,0,100);breakCombo();flashTime=.24;shake=3.2;effect('crash');raceHint('🚨 ROADBLOCK HIT — MOVE!',2.2)}
+ if(ev.kind==='hazard'&&Math.abs(player.lat-ev.lat)<2.25&&player.air===0){player.speed*=.65;player.health=Math.max(0,player.health-18);breakCombo();flashTime=.13;shake=2.5;effect('crash');raceHint('ROADWORKS IMPACT — DAMAGE!',2.1)}
+}}
+function renderChallenges(){if(!challengeDirty&&hudChallengeTime>0)return;challengeDirty=false;hudChallengeTime=.14;let done=challenges.filter(m=>m.done).length;$('challengeStars').textContent=`${done} / ${challenges.length}`;$('challengeRows').innerHTML=challenges.map(m=>`<div class="challengeRow ${m.done?'done':''}"><div class="challengeBadge">${m.done?'✓':'◆'}</div><div class="challengeBody"><div class="challengeName">${m.label}</div><div class="challengeProgress">${m.done?'COMPLETED':(m.key==='slip'?m.progress.toFixed(1):Math.floor(m.progress))+' / '+m.target}${m.key==='air'?' m':m.key==='speed'?' km/h':''}</div><div class="challengeTrack"><div style="width:${Math.floor(100*Math.min(1,m.progress/m.target))}%"></div></div></div></div>`).join('');}
+function resetGame(){let c=CARS[selected];raceTime=0;countdown=3.6;flashTime=0;shake=0;player={d:45,lat:2.8,speed:0,nitro:100,super:100,superTime:0,superCooldown:0,boost:false,air:0,airVel:0,alt:0,lean:0,steer:0,wasBrake:false,driftKickTime:0,latVel:0,headingError:0,drifting:false,driftScore:0,suspension:0,hit:0,lap:1,lapStart:0,bestLap:Infinity,score:0,position:5,passes:0,health:100,lastJump:0,finished:false,car:selected,combo:1,bestCombo:1,comboTimer:0,nearMisses:0,nearCooldown:0,burstCharges:1,burstMeter:0,burstTime:0,heat:1,bust:0,lastCopHit:0,arrests:0,apexAt:-1000,airDistance:0,zoneStart:-1,zoneDistance:0,slipTime:0,lastRivalCall:0,repairs:2,damageHits:0};bots=[];
+resetChallenges();cops=[];if(eventMode==='pursuit'){for(let i=0;i<3;i++)cops.push({name:'INTERCEPTOR ' + (i+1),d:player.d-95-i*24,lat:i%2?4:-4,car:i%2?1:3,speed:0,phase:i*1.6,hit:0})}for(let ev of raceEvents)ev.usedLap=0;raceWarning="";warningTime=0;const profiles=[
+ {name:'MAVERICK',car:1,skill:1.055,style:'CHARGER'},
+ {name:'VIPER',car:2,skill:1.012,style:'APEX HUNTER'},
+ {name:'NOVA',car:3,skill:1.034,style:'SLIPSTREAM'},
+ {name:'BLAZE',car:0,skill:.995,style:'BLOCKER'},
+ {name:'GHOST',car:1,skill:1.096,style:'PHANTOM'},
+ {name:'RAVEN',car:2,skill:.975,style:'LATE BRAKER'},
+ {name:'TITAN',car:3,skill:1.042,style:'NEMESIS'}];
+const ai=DIFFICULTIES[difficulty],carMax=CARS[selected].max+tierFor('engine')*14;
+knockoutInterval=clamp(length/245,8.1,22);knockoutAt=knockoutInterval;knockoutCount=0;eliminatedPlayer=false;rivalRaceFinish=false;
+const grid=eventMode==='duel'?1:(eventMode==='circuit'||eventMode==='pursuit'||eventMode==='elimination'?7:0);
+for(let i=0;i<grid;i++){
+ let v=eventMode==='duel'?profiles[4]:profiles[i],skill=v.skill+(rnd(-.019,.019));
+ let max=clamp((carMax+ai.pace)*skill+(eventMode==='duel'?37:0),238,520);
+ bots.push({name:v.name,d:(eventMode==='duel'?75:45+[-47,-27,-14,19,38,58,79][i]),lat:(i%2?3.5:-3.5)+rnd(-.3,.3),speed:0,
+  max,skill,style:v.style,base:max,car:v.car,phase:rnd(0,TAU),laneTimer:rnd(.45,1.7),targetLat:i%2?3.5:-3.5,
+  finished:false,eliminated:false,hit:0,nemesis:0,nemesisSeconds:0,attackCooldown:0,passBoost:0,braking:false,pitch:0,aggression:ai.racecraft*(.9+i*.04)});
+}
+$('policeHud').style.display=eventMode==='pursuit'?'block':'none';$('knockoutHud').style.display=eventMode==='elimination'?'block':'none';$('battleHud').style.display=grid?'block':'none';$('hud').style.display='block';challengeDirty=true;renderChallenges();$('garage').style.display='none';$('carPlate').style.display='none';$('pauseOverlay').style.display='none';$('finishOverlay').style.display='none';$('pauseBtn').style.display='block';$('countdown').style.display='block';state='countdown';last=performance.now();updateHUD();}
+function raceStart(){eventMode=$('eventSelect').value;let bet=Number($('wagerSelect').value)||0;if(bet>career.bank){toast('INSUFFICIENT BANK FOR SIDE BET','#ff9a9a');return}if(trackName!==$('trackSelect').value){setTrack($('trackSelect').value);buildSky()}else{buildRaceEvents();makeWorld()}difficulty=$('difficulty').value;career.bank-=bet;saveCareer();currentBet=bet;updateGarage();resetGame();initAudio();effect('start')}
+function restart(){currentBet=0;resetGame();initAudio();effect('start')}
+function toast(s,color='#fff',time=1.45){$('toast').textContent=s;$('toast').style.color=color;$('toast').classList.add('show');toastLeft=time}
+function startBurst(){if(state!=='race'||player.burstCharges<=0||player.burstTime>0)return;player.burstCharges--;player.burstTime=1.40;player.speed=Math.max(player.speed,175);shake=2.0;flashTime=.10;effect('super');toast('✦ PERFECT BURST · +SPEED','#fff2aa',1.2)}
+function earnBurst(points){if(!player||state!=='race')return;player.burstMeter+=points;while(player.burstMeter>=100&&player.burstCharges<3){player.burstMeter-=100;player.burstCharges++;toast('✦ BURST NITRO CHARGED','#b9fff9',1.0)}if(player.burstCharges===3)player.burstMeter=0}
+function startSuper(){if(state!=='race'||player.super<99||player.superCooldown>0||player.superTime>0)return;player.super=0;player.superTime=4.1;player.superCooldown=13.0;player.speed=Math.max(player.speed,255);shake=3.0;flashTime=.16;effect('super');toast('⚡ SUPER NITRO ACTIVATED','#ffedaa',1.9)}
+function finishRace(busted=false){if(player.finished)return;player.finished=true;state='finished';player.position=1+bots.filter(b=>!b.eliminated&&b.d>player.d).length;const place=player.position,laps=LAPS_BY_MODE[eventMode],qualified=!busted&&(eventMode==='circuit'?place<=3:eventMode==='duel'?place===1:eventMode==='elimination'?place===1:eventMode==='time'?raceTime<=targetTime():eventMode==='drift'?player.driftScore>=targetDrift():true);lastEventWon=qualified;
+let recordKey=trackName+'-'+selected+'-'+difficulty+'-'+eventMode,old=store.best[recordKey];if(!busted&&(!old||raceTime<old)){store.best[recordKey]=raceTime;try{localStorage.setItem('apex-rivals-records',JSON.stringify(store.best))}catch(e){}}
+let winReward=eventMode==='duel'?9600:eventMode==='elimination'?11000:eventMode==='pursuit'?8500:eventMode==='time'?3400:eventMode==='drift'?4000:6000;let base=qualified?winReward:Math.floor(winReward*.26);if(eventMode==='circuit')base+=Math.max(0,4-place)*950;let missions=challenges.filter(m=>m.done).length,bonus=missions*350,payout=Math.max(0,base+bonus);let betReward=qualified?currentBet*2:0;career.bank+=payout+betReward;career.rep+=qualified?(eventMode==='pursuit'?1800:900)+missions*150:120+missions*65;if(qualified)career.wins++;saveCareer();
+const titles={circuit:qualified?'PODIUM FINISH!':'RACE COMPLETE',time:qualified?'CLOCK DESTROYED!':'TIME EXPIRED',drift:qualified?'DRIFT MASTER!':'DRIFT TRIAL OVER',pursuit:qualified?'PURSUIT ESCAPED!':busted?'YOU GOT BUSTED!':'PURSUIT FAILED',duel:qualified?'RIVAL DEFEATED!':'RIVAL WINS!',elimination:qualified?'LAST RACER STANDING!':busted?'YOU WERE ELIMINATED!':'ELIMINATION OVER'};
+$('finishKicker').textContent=eventMode.toUpperCase()+(qualified?' · VICTORY':' · COMPLETE');$('finishTitle').textContent=titles[eventMode];$('finishDesc').textContent=eventMode==='time'?`Target ${fmt(targetTime())} · Your time ${fmt(raceTime)}`:eventMode==='drift'?`Target ${targetDrift().toLocaleString()} drift points · You scored ${Math.floor(player.driftScore).toLocaleString()}`:eventMode==='pursuit'?`HEAT ${Math.ceil(player.heat)} · Avoided capture: ${!busted?'YES':'NO'}`:eventMode==='duel'?`Duel against ${bots[0]?.name||'elite opponent'} · P${place} of 2`:eventMode==='elimination'?`Knockout rounds ${knockoutCount} · ${busted?'Eliminated':`Finished P${place}`}`:`Finished P${place} against seven rival racers.`;
+$('finalPlace').textContent=['circuit','duel','elimination'].includes(eventMode)?place+' / '+(bots.length+1):qualified?'PASSED':'MISSED';$('finalTime').textContent=fmt(raceTime);$('bestLap').textContent=fmt(player.bestLap===Infinity?raceTime:player.bestLap);$('finishMissions').textContent=`MISSIONS ${missions}/${challenges.length} · BEST COMBO ×${player.bestCombo.toFixed(1)} · SCORE ${Math.floor(player.score).toLocaleString()}`;$('finishReward').textContent=`${qualified?'🏆':'🏁'} +${payout.toLocaleString()} BANK · +${qualified?(eventMode==='pursuit'?1800:900)+missions*150:120+missions*65} REP${currentBet?' · WAGER '+(qualified?'+':'−')+currentBet.toLocaleString():''}`;
+$('finishOverlay').style.display='grid';$('pauseBtn').style.display='none';$('policeHud').style.display='none';$('knockoutHud').style.display='none';$('battleHud').style.display='none';effect(qualified?'finish':'crash');}
+
+function pause(){if(state==='race'||state==='countdown'){store.pausedFrom=state;state='paused';$('pauseOverlay').style.display='grid';$('countdown').style.display='none';}else if(state==='paused'){state=store.pausedFrom||'race';$('pauseOverlay').style.display='none';if(state==='countdown')$('countdown').style.display='block';last=performance.now()}}
+function garage(){currentBet=0;state='garage';$('garage').style.display='flex';$('carPlate').style.display=window.innerWidth>650?'block':'none';$('hud').style.display='none';$('pauseBtn').style.display='none';$('pauseOverlay').style.display='none';$('finishOverlay').style.display='none';$('countdown').style.display='none';$('toast').classList.remove('show');$('policeHud').style.display='none';$('knockoutHud').style.display='none';$('battleHud').style.display='none';updatePlate();updateGarage();}
+function resetPosition(){if(state!=='race')return;player.lat=0;player.latVel=0;player.headingError=0;player.lean=0;player.speed=Math.min(player.speed,75);player.air=0;player.alt=0;player.airVel=0;toast('CAR RECOVERED','#7cfdec')}
+function intersectTrigger(start,end,fr){let spot=Math.floor(start/length)*length+fr*length;while(spot<start)spot+=length;return spot<=end}
+function updateKnockout(){
+ if(eventMode!=='elimination'||state!=='race')return;
+ if(raceTime<knockoutAt)return;
+ // Eliminate exactly one trailing active driver each round.
+ const alive=bots.filter(b=>!b.eliminated);
+ const order=[{player:true,name:'YOU',d:player.d},...alive.map(b=>({name:b.name,d:b.d,bot:b}))].sort((a,b)=>a.d-b.d);
+ if(order.length<=1){finishRace(false);return}
+ const last=order[0];knockoutCount++;
+ knockoutAt+=knockoutInterval;
+ if(last.player){eliminatedPlayer=true;raceHint('☠ YOU HAVE BEEN ELIMINATED',3);effect('crash');finishRace(true);return}
+ last.bot.eliminated=true;last.bot.speed=0;
+ raceHint(`☠ ${last.name} ELIMINATED · ${alive.length-1} RIVALS LEFT`,2.6);
+ player.score+=450;effect('pass');
+ if(alive.length===1){finishRace(false);return;}
+}
+function updatePursuit(dt){const p=player;
+ p.heat=clamp(p.heat+(p.speed>165?.010:.0035)*dt*22+(p.drifting?.018:0)*dt*22+(.004*DIFFICULTIES[difficulty].racecraft)*dt*15,1,5);
+ let near=0;for(let i=0;i<cops.length;i++){let cop=cops[i];if(cop.d<p.d-200||cop.d>p.d+105)cop.d=p.d-85-i*20;let gap=p.d-cop.d;let chaseSpeed=clamp(p.speed+18+p.heat*10+(i%2?8:-7),105,480);cop.speed=mix(cop.speed,chaseSpeed,Math.min(1,dt*.95));cop.d+=cop.speed/3.6*dt;
+ let desired=clamp(p.lat+(i%2?1.3:-1.3),-7,7);cop.lat=mix(cop.lat,desired,Math.min(1,dt*(.75+p.heat*.08)));cop.hit=Math.max(0,cop.hit-dt);
+ let dist=Math.abs(cop.d-p.d),lateral=Math.abs(cop.lat-p.lat);if(dist<26)near++;
+ if(dist<4.5&&lateral<2.55&&cop.hit<=0&&p.hit<=0){cop.hit=2.3;p.hit=1.35;p.speed=Math.max(18,p.speed*.68);p.health=Math.max(0,p.health-6);p.bust=clamp(p.bust+14,0,100);shake=2.1;flashTime=.14;effect('crash');raceHint('🚨 POLICE INTERCEPTOR IMPACT',1.7)}}
+ if(near>0&&p.speed<55)p.bust=clamp(p.bust+dt*(near*11+4),0,100);else p.bust=Math.max(0,p.bust-dt*(near?1.8:7.0));
+ if(p.bust>=100)finishRace(true);
+}
+function updateRace(dt){if(state==='countdown'){countdown-=dt;$('countdown').textContent=countdown>1.0?String(Math.ceil(countdown-1)):'GO!';if(countdown<=.25){$('countdown').style.display='none';state='race';player.lapStart=0;raceTime=0;effect('go');toast('LIGHTS OUT · GO GO GO!','#80ffef',1.2)}return}if(state!=='race')return;
+let c=CARS[selected],oldD=player.d,move=0;if(input.left)move-=1;if(input.right)move+=1;let gas=input.gas,brake=input.brake,nowNitro=input.nitro&&player.nitro>1&&!brake&&player.superTime<=0;player.boost=nowNitro;
+let corner=sample(player.d+9),sharp=Math.abs(corner.curvature),aggression=DIFFICULTIES[difficulty].racecraft;
+let cap=c.max+tierFor('engine')*14+(nowNitro?(95+tierFor('nitro')*12)*c.boost:0)+(player.superTime>0?205*c.boost:0)+(player.burstTime>0?108:0);let gasForce=(gas?76*c.acc*(1+tierFor('engine')*.095):0)+(nowNitro?155*c.boost*(1+tierFor('nitro')*.10):0)+(player.superTime>0?240*c.boost:0)+(player.burstTime>0?260:0);
+let drag=9+(player.speed*.045)+(player.speed*player.speed*.00010),braking=brake?225:0;
+player.speed=clamp(player.speed+(gasForce-drag-braking)*dt,0,cap);if(!gas&&!brake&&player.speed<45)player.speed=Math.max(0,player.speed-10*dt);
+
+// Arcade vehicle dynamics inspired by accessible grip/drift racing, not a free-rolling rigidbody.
+// Lateral tire velocity is damped by grip; steering decreases with speed; contact with the
+// track anchors Y and keeps roll modest. Every car's up vector remains aligned with the road.
+let speedMS=player.speed/3.6;
+let steerLimit=mix(.31,.115,clamp(player.speed/365,0,1))*c.turn*(1+tierFor('grip')*.055);
+let requestedSteer=move*steerLimit;
+player.steer=mix(player.steer,requestedSteer,1-Math.exp(-8.6*dt));
+if(brake&&!player.wasBrake&&speedMS>20&&Math.abs(move)>.2)player.driftKickTime=.85;player.wasBrake=brake;player.driftKickTime=Math.max(0,player.driftKickTime-dt);let driftIntent=(input.drift||player.driftKickTime>0)&&speedMS>14&&!brake&&player.air===0;
+let loose=driftIntent||handling==='drift';
+let idealSide=speedMS*Math.sin(player.steer)*(loose?1.17:1);
+let roadInertia=clamp(corner.curvature*speedMS*speedMS*(loose?.095:.028),-2.2,2.2);
+idealSide+=roadInertia;
+let gripRate=driftIntent?1.8:handling==='drift'?3.5:8.5;
+player.latVel=mix(player.latVel,idealSide,(1-Math.exp(-gripRate*dt))*(player.air>0?.22:1));
+player.lat+=player.latVel*dt;
+player.drifting=driftIntent&&Math.abs(player.latVel)>1.8;
+player.headingError=clamp(-Math.atan2(player.latVel,Math.max(8,speedMS)), -.29,.29);
+// Loss of grip penalizes very fast, tight corners but never forcibly rolls the chassis.
+let suggested=clamp(Math.sqrt(17/Math.max(.0002,sharp))*3.6,145,410);
+if(player.speed>suggested&&sharp>.0035&&loose)player.speed=Math.max(suggested,player.speed-(player.speed-suggested)*.55*dt);
+if(Math.abs(player.lat)>(trackName==='summit'?8.65:9.65)){player.latVel-=Math.sign(player.lat)*Math.min(10,(Math.abs(player.lat)-9.65)*6)*dt;player.speed=Math.max(0,player.speed-18*dt)}
+if(Math.abs(player.lat)>(trackName==='summit'?9.95:11.1)){let edge=Math.sign(player.lat);player.lat=edge*(trackName==='summit'?9.55:10.64);player.latVel=-edge*3.0;player.headingError=0;shake=Math.max(shake,.35);if(player.hit<=0){player.hit=.75;player.speed*=.70;player.health=Math.max(0,player.health-8);player.damageHits++;breakCombo();effect('scrape');toast('BARRIER HIT · STAY ON TRACK','#ffab98',.8)}}
+// Roll and pitch are VISUAL SUSPENSION ONLY, bounded to safe angles (max ~6 degrees).
+const rollTarget=clamp(-player.latVel*.0075+corner.curvature*speedMS*.16,-.075,.075);
+player.lean=clamp(mix(player.lean,rollTarget,1-Math.exp(-7*dt)),-.10,.10);
+player.suspension=mix(player.suspension,Math.sin(now*13)*(Math.min(1,player.speed/240))*.012,1-Math.exp(-6*dt));
+let delta=speedMS*Math.cos(player.headingError)*dt;player.d+=delta;if(eventMode==='time')addMission('distance',delta);raceTime+=dt;player.score+=delta*.8;player.comboTimer=Math.max(0,player.comboTimer-dt);if(player.comboTimer<=0)player.combo=1;player.nearCooldown=Math.max(0,player.nearCooldown-dt);hudChallengeTime=Math.max(0,hudChallengeTime-dt);warningTime=Math.max(0,warningTime-dt);if(warningTime===0)$('dangerBanner').style.opacity='0';
+if(player.drifting){let bonus=Math.round(Math.abs(player.latVel)*dt*5*player.combo);player.score+=bonus;player.driftScore+=bonus;addMission('drift',bonus);earnBurst(Math.min(0.3,bonus*.022));}
+// Reward controlled high-speed cornering rather than endlessly swerving on straights.
+if(sharp>.0042&&Math.abs(player.lat)<6.4&&player.speed>120&&player.hit<=0&&player.d-player.apexAt>125){player.apexAt=player.d;stunt('PERFECT APEX',340,'apex',1)}
+if(nowNitro){player.nitro=clamp(player.nitro-(26-tierFor('nitro')*3.2)*dt,0,100)}else player.nitro=clamp(player.nitro+9*dt,0,100);
+player.burstTime=Math.max(0,player.burstTime-dt);player.superTime=Math.max(0,player.superTime-dt);player.superCooldown=Math.max(0,player.superCooldown-dt);if(player.superTime===0)player.super=clamp(player.super+4.2*dt,0,100);
+player.hit=Math.max(0,player.hit-dt);flashTime=Math.max(0,flashTime-dt);shake=Math.max(0,shake-dt*2.6);
+// Humped crest sections launch cars cleanly into the air. Vertical trajectory uses gravity.
+if(player.air===0&&player.speed>158&&player.lastJump+6<raceTime&&(trackName==='summit'?[.17,.355,.71,.86]:[.263,.659]).some(fr=>intersectTrigger(oldD,player.d,fr))){player.air=.001;player.airVel=5.8+Math.min(5,player.speed*.015);player.lastJump=raceTime;player.score+=300;effect('jump');toast('AIRBORNE — HOLD YOUR LINE','#ffe79f')}
+if(player.air>0){player.air+=dt;let flightD=Math.max(0,delta);player.airDistance+=flightD;player.alt=Math.max(0,player.alt+player.airVel*dt);player.airVel-=19*dt;if(player.alt<=0&&player.air>.20){player.alt=0;player.air=0;player.airVel=0;stunt('SMOOTH LANDING',460,'air',Math.round(player.airDistance));player.airDistance=0;effect('land');shake=Math.max(shake,.5)}}
+if(player.speed>95&&sharp>.0065&&Math.abs(move)>0&&Math.random()<dt*1.3)effect('tire');
+// RIVAL UPRISING: predictive corner-speed planning + legal passing lines + active defense.
+// All AI speeds are in km/h; distance changes use km/h / 3.6. No teleports or instant boost spikes.
+for(let bot of bots){
+ if(bot.eliminated)continue;
+ const cfg=DIFFICULTIES[difficulty],ahead=sample(bot.d+Math.max(34,bot.speed*.28));
+ const cNear=Math.abs(sample(bot.d+19).curvature),cMid=Math.abs(ahead.curvature),cFar=Math.abs(sample(bot.d+Math.max(63,bot.speed*.45)).curvature);
+ const curve=Math.max(cNear*.65+cMid*.35,cMid*.80,cFar*.61);
+ const safeTurn=Math.sqrt(cfg.cornerG*bot.skill/Math.max(.00024,curve))*3.6;
+ const cornerTarget=clamp(safeTurn,cfg.cornerFloor,bot.max);
+ const turnFactor=Math.abs(ahead.curvature),line=clamp(-ahead.curvature*205,-2.4,2.4);
+ let targetSpeed=Math.min(bot.max,cornerTarget);
+ // Performance improves with player car power, but never an impossible infinite rubber band.
+ // Fast rivals remain formidable on straights; careful braking creates passing windows in hairpins.
+ const behind=player.d-bot.d;
+ if(behind>55&&behind<260)targetSpeed+=Math.min(13,(behind-55)*.08)*cfg.reaction;
+ if(bot.passBoost>0)targetSpeed+=11*cfg.reaction;
+ if(bot.nemesis>0&&Math.abs(behind)<110)targetSpeed+=5+bot.nemesis*3;
+ targetSpeed=clamp(targetSpeed,95,bot.max+22);
+ const desiredAccel=cfg.accel*bot.skill,desiredBrake=(165+cfg.reaction*40)*bot.skill;
+ const speedChange=clamp(targetSpeed-bot.speed,-desiredBrake*dt,desiredAccel*dt);
+ bot.speed=clamp(bot.speed+speedChange,0,bot.max+22);
+ bot.braking=speedChange<-.04;
+ bot.d+=bot.speed/3.6*dt;
+ bot.attackCooldown=Math.max(0,bot.attackCooldown-dt);
+ bot.passBoost=Math.max(0,bot.passBoost-dt);
+ bot.nemesisSeconds=Math.max(0,bot.nemesisSeconds-dt);
+ bot.hit=Math.max(0,bot.hit-dt);
+ // Drive toward the apex, then return to a passing lane when traffic requires it.
+ bot.laneTimer-=dt;
+ if(bot.laneTimer<=0){bot.laneTimer=rnd(1.0,2.4)/cfg.reaction;
+  bot.targetLat=clamp(line+(bot.phase>3.0?1.25:-1.25),-5.7,5.7);
+ }
+ let bestObstacle=null,bestGap=Infinity;
+ for(let rival of bots){
+  if(rival===bot||rival.eliminated)continue;
+  const gap=rival.d-bot.d;
+  if(gap>0&&gap<Math.max(27,bot.speed*.20)&&Math.abs(rival.lat-bot.lat)<4.6&&gap<bestGap){bestObstacle=rival;bestGap=gap;}
+ }
+ if(player.d>bot.d&&player.d-bot.d<Math.max(26,bot.speed*.16)&&Math.abs(bot.lat-player.lat)<4.2){
+  bestObstacle={lat:player.lat,speed:player.speed};bestGap=player.d-bot.d;
+ }
+ if(bestObstacle){
+  // choose open side to complete a pass; don't rubber-band straight through obstacles.
+  const left=clamp(bestObstacle.lat-3.6,-7.25,7.25),right=clamp(bestObstacle.lat+3.6,-7.25,7.25);
+  const preference=Math.abs(left-line)<Math.abs(right-line)?left:right;
+  bot.targetLat=preference;
+  if(bot.attackCooldown===0&&bestGap<30){bot.passBoost=.75;bot.attackCooldown=1.1;}
+ }
+ // Rival with a grudge looks for a defensive lane but avoids instant side-swipes.
+ if(bot.nemesis>0&&bot.d>player.d&&bot.d-player.d<46&&bot.attackCooldown===0){
+  bot.targetLat=clamp(player.lat+(bot.lat>=player.lat?2.8:-2.8),-7.2,7.2);
+  bot.attackCooldown=1.9;
+ }
+ bot.lat=mix(bot.lat,clamp(bot.targetLat,-7.35,7.35),1-Math.exp(-dt*(1.5+cfg.reaction*.65)));
+ if(bot.d>=45+LAPS_BY_MODE[eventMode]*length){bot.finished=true;bot.speed=0;}
+ if(Math.abs(bot.d-player.d)<4.25&&Math.abs(bot.lat-player.lat)<2.45&&player.hit<=0){
+  player.hit=1.15;bot.hit=1.45;
+  player.speed=Math.max(45,player.speed*.74);
+  bot.speed=Math.max(80,bot.speed*.78);
+  player.health=Math.max(0,player.health-9);breakCombo();
+  const side=player.lat>=bot.lat?1:-1;
+  player.lat=clamp(player.lat+side*1.35,-10.1,10.1);
+  bot.targetLat=clamp(bot.lat-side*1.8,-7.1,7.1);
+  bot.nemesis=clamp(bot.nemesis+1,0,3);bot.nemesisSeconds=65;
+  shake=2.2;flashTime=.14;effect('crash');
+  raceHint(`⚔ NEMESIS: ${bot.name} WON'T FORGET THAT!`,2.4);
+ }
+}
+if(eventMode==='elimination')updateKnockout();
+// Smart slipstream: tuck behind a rival and receive nitro/score for clean drafting.
+let drafting=bots.some(b=>!b.eliminated&&b.d>player.d+7&&b.d<player.d+44&&Math.abs(b.lat-player.lat)<3.4);
+if(drafting&&player.speed>95){player.nitro=clamp(player.nitro+17*dt,0,100);player.slipTime+=dt;player.score+=14*dt;addMission('slip',dt)}
+// Thread the needle as rival cars pass close to your mirrors (one award per car cooldown).
+if(player.nearCooldown<=0&&player.speed>115){for(let bot of bots){if(!bot.eliminated&&Math.abs(bot.d-player.d)<4.5&&Math.abs(bot.lat-player.lat)>=2.6&&Math.abs(bot.lat-player.lat)<5.4&&bot.hit<=0){player.nearCooldown=2.0;player.nearMisses++;stunt('NEAR MISS!',280,'near',1);break}}}
+if(eventMode==='pursuit'){updatePursuit(dt);if(state!=='race')return;}
+processRaceEvents(oldD,player.d);
+// Damage is an arcade gameplay resource: reset safely on the road; no rollover state.
+if(player.health<=0){player.health=58;player.speed=52;player.lat=0;player.latVel=0;player.headingError=0;player.lean=0;player.d=Math.max(45,player.d-24);breakCombo();raceTime+=5;flashTime=.27;effect('crash');toast('WRECKED — +5 SEC PENALTY','#ff9ba5',1.9)}
+// Always give the player a strategic service opportunity at the pit entry each lap.
+if(intersectTrigger(oldD,player.d,.023)&&player.health<92&&player.repairs>0&&Math.abs(player.lat)<7){player.health=Math.min(100,player.health+44);player.repairs--;raceHint('PIT CREW +44 INTEGRITY',2);effect('lap')}
+if(player.speed>165&&Math.abs(player.lat)>9)raceHint('TRACK LIMITS! LIFT AND RECOVER',.6);
+let threat=bots.find(b=>Math.abs(b.d-player.d)<34);if(threat&&raceTime-player.lastRivalCall>23){player.lastRivalCall=raceTime;raceHint(threat.d>player.d?`${threat.name} AHEAD · HUNT HIM DOWN`:`${threat.name} ATTACKING YOUR POSITION`,2.5)}
+let prevPos=player.position;player.position=1+bots.filter(b=>!b.eliminated&&b.d>player.d).length;if(player.position<prevPos){let diff=prevPos-player.position;stunt('RIVAL OVERTAKEN!',520*diff,'pass',diff);player.super=clamp(player.super+diff*16,0,100);player.passes+=diff;effect('pass')}
+let lap=1+Math.floor(Math.max(0,player.d-45)/length);if(lap>player.lap){let split=raceTime-player.lapStart;player.bestLap=Math.min(player.bestLap,split);player.lapStart=raceTime;player.lap=lap;if(lap<=LAPS_BY_MODE[eventMode]){player.score+=2000;player.super=clamp(player.super+35,0,100);toast('LAP '+lap+' / '+LAPS_BY_MODE[eventMode]+'  ·  +2000','#fff0a1');effect('lap')}}if(lap>LAPS_BY_MODE[eventMode])finishRace(false);
+updateHUD();}
+function updateHUD(){let c=CARS[selected],p=player;if(!p||p.d==null)return;document.body.classList.toggle('raceHot',p.health<35);$('hud').classList.toggle('pulse',p.combo>3.1);$('place').textContent=String(p.position||8).padStart(2,'0');$('place').nextElementSibling.textContent=' / '+String(eventMode==='elimination'?bots.filter(b=>!b.eliminated).length+1:bots.length+1).padStart(2,'0');$('lap').textContent=Math.min(LAPS_BY_MODE[eventMode],p.lap||1);$('lap').nextElementSibling.textContent=' / '+LAPS_BY_MODE[eventMode];$('modeHudLabel').textContent=eventMode==='time'?'TARGET':eventMode==='drift'?'DRIFT SCORE':eventMode==='pursuit'?'HEAT LEVEL':'EVENT';$('modeHudValue').textContent=eventMode==='time'?fmt(targetTime()):eventMode==='drift'?Math.floor(p.driftScore):eventMode==='pursuit'?Math.ceil(p.heat):eventMode==='duel'?'DUEL':eventMode==='elimination'?'KO':'GP';$('speed').textContent=String(Math.floor(p.speed)).padStart(3,'0');$('gear').textContent=p.speed<4?'N':Math.min(7,Math.max(1,Math.ceil(p.speed/55)));$('timer').textContent=fmt(raceTime);$('raceScore').textContent=Math.floor(p.score).toLocaleString();$('nitroNum').textContent=Math.floor(p.nitro)+'%';$('nitroFill').style.width=p.nitro+'%';$('superNum').textContent=p.superTime>0?'BOOSTING':p.super>=99&&p.superCooldown<=0?'READY':Math.floor(p.super)+'%';$('superFill').style.width=p.super+'%';$('superTouch').disabled=p.super<99||p.superCooldown>0||p.superTime>0;$('healthNum').textContent=Math.ceil(p.health)+'%';$('healthFill').style.width=p.health+'%';$('burstNum').textContent=p.burstCharges+' / 3';$('burstFill').style.width=((p.burstCharges+p.burstMeter/100)/3*100)+'%';if(eventMode==='pursuit'){$('heatStatus').textContent='🚨 HEAT '+Math.ceil(p.heat);$('heatDetail').textContent='POLICE CHASE · '+Math.ceil(p.bust)+'% BUST';$('bustFill').style.width=p.bust+'%';}$('comboNum').textContent='×'+p.combo.toFixed(1);let closest=null,howFar=Infinity;for(let event of raceEvents){let ahead=posmod(event.fr*length-posmod(p.d,length),length);if(ahead<howFar){howFar=ahead;closest=event}}$('eventHint').textContent=eventMode==='drift'?('DRIFT TARGET '+Math.floor(p.driftScore)+' / '+targetDrift()):eventMode==='time'?('BEAT '+fmt(targetTime())+' · '+fmt(raceTime)):closest&&howFar<215?((closest.kind==='hazard'?'⚠ '+(closest.lat<0?'LEFT':'RIGHT')+' CHICANE':closest.kind==='boost'?'⚡ BOOST GATE':closest.kind==='zoneStart'?'◎ SPEED ZONE':closest.kind==='zoneEnd'?'◎ ZONE FINISH':'◎ SPEED TRAP')+' · '+Math.round(howFar)+'m'):(trackName==='summit'?'RAZOR RIDGE · STAY SHARP':'CHAIN MOVES FOR COMBO');renderChallenges();let order=[{name:'YOU',d:p.d,player:true}].concat(bots.map(b=>({name:b.name,d:b.d,bot:b,eliminated:b.eliminated}))).sort((a,b)=>Number(Boolean(a.eliminated))-Number(Boolean(b.eliminated))||b.d-a.d);
+const active=bots.filter(b=>!b.eliminated);
+const closestRival=active.slice().sort((a,b)=>Math.abs(a.d-p.d)-Math.abs(b.d-p.d))[0];
+if(closestRival){
+ const delta=closestRival.d-p.d;
+ const seconds=Math.abs(delta)/Math.max(21,Math.max(closestRival.speed,p.speed)/3.6);
+ const isNemesis=closestRival.nemesis>0&&closestRival.nemesisSeconds>0;
+ $('battleHud').classList.toggle('nemesis',isNemesis);
+ $('battleLabel').textContent=isNemesis?'⚔ NEMESIS IN RANGE':eventMode==='duel'?'⚔ FINAL RIVAL':'RIVAL BATTLE';
+ $('battleRival').textContent=closestRival.name;
+ $('battleGap').textContent=(delta>=0?'+':'−')+seconds.toFixed(1)+' SEC';
+ $('battleDetail').textContent=isNemesis?'PERSONAL GRUDGE · '+closestRival.style:closestRival.braking?'BRAKING FOR APEX':closestRival.style+' · '+Math.floor(closestRival.speed)+' KM/H';
+}
+$('battleHud').style.display=active.length?'block':'none';
+if(eventMode==='elimination'){
+ $('knockoutTime').textContent=fmt(Math.max(0,knockoutAt-raceTime));
+ $('knockoutCount').textContent=(active.length+1)+' CARS LEFT · ROUND '+(knockoutCount+1);
+}
+$('leaderRows').innerHTML=order.slice(0,8).map((b,i)=>{
+ let pace=b.bot?Math.floor(b.bot.speed):Math.floor(p.speed);
+ let gap=b.player?'YOU':b.eliminated?'OUT':(b.d>=p.d?'+':'−')+(Math.abs(b.d-p.d)/Math.max(23,Math.max(p.speed,pace)/3.6)).toFixed(1)+'s';
+ return `<div class="rivalrow ${b.player?'me':b.eliminated?'eliminated':b.bot?.nemesis>0?'nemesis':''}"><span>${b.eliminated?'×':i+1} &nbsp;${b.name}</span><span class="gap">${gap}</span></div>`}).join('');}
+
+function drawMiniMap(){if(!path.length)return;let ctx=mapCtx,w=mapCanvas.width,h=mapCanvas.height;ctx.clearRect(0,0,w,h);let xs=path.map(p=>p.x),zs=path.map(p=>p.z),minX=Math.min(...xs),maxX=Math.max(...xs),minZ=Math.min(...zs),maxZ=Math.max(...zs),sc=Math.min((w-38)/(maxX-minX),(h-38)/(maxZ-minZ));store.map={minX,maxX,minZ,maxZ,sc,x0:(w-(maxX-minX)*sc)/2,y0:(h-(maxZ-minZ)*sc)/2};}
+function updateMap(){let {x0,y0,minX,minZ,sc}=store.map||{};if(sc==null)return;let ctx=mapCtx,w=mapCanvas.width,h=mapCanvas.height;ctx.clearRect(0,0,w,h);let tr=trackName==='marina',color=tr?'#f066b1':trackName==='summit'?'#ffb476':'#8ebaa8';ctx.save();ctx.lineJoin='round';ctx.lineCap='round';ctx.strokeStyle='#18344b';ctx.lineWidth=14;ctx.beginPath();path.forEach((p,i)=>{let x=x0+(p.x-minX)*sc,y=y0+(p.z-minZ)*sc;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.closePath();ctx.stroke();ctx.strokeStyle=color;ctx.lineWidth=4;ctx.stroke();const dot=(d,r,fill)=>{let p=sample(d),x=x0+(p.x-minX)*sc,y=y0+(p.z-minZ)*sc;ctx.fillStyle=fill;ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.fill()};if(player.d!=null){for(let b of bots)if(!b.eliminated)dot(b.d,4,'#ff637d');for(let cop of cops)dot(cop.d,5,'#6cb8ff');for(let ev of raceEvents){if(ev.kind==='hazard')dot(ev.fr*length,2.7,'#ff9b55');else if(ev.kind==='boost')dot(ev.fr*length,2.6,'#80deff')}dot(player.d,7,'#80fff1')}ctx.restore()}
+let audio=null,master=null,engine1=null,engine2=null,eg=null,wnoise=null,wg=null,tireNode=null,tireGain=null,lastBrake=false,lastNitro=false,previousGear=1,volume=.63;
+function noiseBuffer(sec=1){let length1=Math.floor(audio.sampleRate*sec),b=audio.createBuffer(1,length1,audio.sampleRate),data=b.getChannelData(0);let prev=0;for(let i=0;i<data.length;i++){let x=Math.random()*2-1;prev=(prev*.93+x*.07);data[i]=prev*1.7}return b}
+function initAudio(){if(!soundOn)return;try{if(!audio){audio=new(window.AudioContext||window.webkitAudioContext)();master=audio.createGain();master.gain.value=.38;let limiter=audio.createDynamicsCompressor();limiter.threshold.value=-18;limiter.ratio.value=10;limiter.attack.value=.004;limiter.release.value=.21;master.connect(limiter);limiter.connect(audio.destination);
+let engineFilter=audio.createBiquadFilter();engineFilter.type='lowpass';engineFilter.frequency.value=900;eg=audio.createGain();eg.gain.value=0;engineFilter.connect(eg);eg.connect(master);
+engine1=audio.createOscillator();engine1.type='sawtooth';engine1.frequency.value=70;engine1.connect(engineFilter);engine1.start();engine2=audio.createOscillator();engine2.type='square';engine2.frequency.value=112;let engine2gain=audio.createGain();engine2gain.gain.value=.13;engine2.connect(engine2gain);engine2gain.connect(engineFilter);engine2.start();
+let ns=audio.createBufferSource();ns.buffer=noiseBuffer(3);ns.loop=true;let wf=audio.createBiquadFilter();wf.type='highpass';wf.frequency.value=450;wg=audio.createGain();wg.gain.value=0;ns.connect(wf);wf.connect(wg);wg.connect(master);ns.start();wnoise=ns;
+let ns2=audio.createBufferSource();ns2.buffer=noiseBuffer(2);ns2.loop=true;let tf=audio.createBiquadFilter();tf.type='bandpass';tf.frequency.value=1000;tireGain=audio.createGain();tireGain.gain.value=0;ns2.connect(tf);tf.connect(tireGain);tireGain.connect(master);ns2.start();tireNode=ns2;
+}if(audio.state==='suspended')audio.resume();}catch(e){console.warn('Audio unavailable:',e)}}
+function tone(a,b,d,wave='sawtooth',v=.2){if(!audio||!soundOn)return;let t=audio.currentTime;let o=audio.createOscillator(),g=audio.createGain();o.type=wave;o.frequency.setValueAtTime(Math.max(15,a),t);o.frequency.exponentialRampToValueAtTime(Math.max(15,b),t+d);g.gain.setValueAtTime(.0005,t);g.gain.exponentialRampToValueAtTime(v,t+.025);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(master);o.start(t);o.stop(t+d+.03)}
+function crashNoise(d=.44,v=.35){if(!audio||!soundOn)return;let source=audio.createBufferSource(),gain=audio.createGain(),filter=audio.createBiquadFilter();source.buffer=noiseBuffer(d);filter.type='lowpass';filter.frequency.value=500;gain.gain.value=v;source.connect(filter);filter.connect(gain);gain.connect(master);source.start()}
+function effect(name){if(!audio||!soundOn)return;switch(name){case 'start':tone(78,200,.7,'sawtooth',.24);break;case 'go':tone(340,590,.18,'square',.17);tone(420,740,.4,'sawtooth',.19);break;case 'super':crashNoise(.7,.32);tone(60,1350,1,'sawtooth',.40);tone(150,820,.6,'square',.22);break;case 'jump':tone(190,430,.37,'sine',.24);break;case 'land':crashNoise(.18,.30);tone(90,35,.2,'triangle',.24);break;case 'crash':crashNoise(.65,.85);tone(170,29,.62,'sawtooth',.46);break;case 'pass':tone(600,910,.18,'sine',.15);tone(900,1220,.23,'triangle',.12);break;case 'lap':tone(260,400,.17,'square',.12);tone(440,780,.4,'sine',.15);break;case 'finish':for(let i=0;i<4;i++)setTimeout(()=>tone(280+i*115,500+i*145,.42,'triangle',.20),i*180);break;case 'tire':break;case 'scrape':crashNoise(.09,.19);break;case 'shift':tone(480,160,.12,'sawtooth',.08);break;case 'gate':tone(320,870,.23,'square',.15);tone(740,1180,.30,'sine',.18);break;case 'strip':tone(120,1050,.68,'sawtooth',.32);tone(420,1800,.40,'triangle',.15);break;}}
+function soundTick(dt){if(!audio)return;let on=(state==='race'||state==='countdown')&&soundOn,p=player,s=on?p.speed:0,boost=on&&(p.boost||p.superTime>0),t=audio.currentTime,gear=Math.max(1,Math.ceil(s/55)),rpm=0.12+(s%55)/55*.75;if(engine1){engine1.frequency.setTargetAtTime(62+rpm*96+(boost?25:0),t,.07);engine2.frequency.setTargetAtTime(110+rpm*190+(boost?55:0),t,.09);eg.gain.setTargetAtTime(on?(input.gas?.26:.12)+(boost?.14:0):0.0001,t,.10);wg.gain.setTargetAtTime(on?.025+Math.min(.22,s*.00035)+(boost?.19:0):0,t,.10);tireGain.gain.setTargetAtTime(on&&(input.brake&&s>100||p.drifting&&s>90)?.11:0,t,.10);master.gain.setTargetAtTime(soundOn?volume:0,t,.08)}if(on&&gear!==previousGear&&s>40)effect('shift');previousGear=gear;if(on&&!lastBrake&&input.brake&&s>90)tone(1600,390,.35,'sawtooth',.09);if(on&&!lastNitro&&p.boost)tone(130,760,.45,'sawtooth',.19);if(on&&eventMode==='pursuit'){sirenTick-=dt;if(sirenTick<=0){sirenTick=1.7;tone(430,760,.68,'sine',.065);tone(760,410,.85,'sine',.07)}}lastBrake=input.brake;lastNitro=!!p.boost}
+let sirenTick=0;
+let skyMesh=null,flames=null,shadowMesh=null,policeLightMesh=null;
+function buildSky(){if(skyMesh?.buf)gl.deleteBuffer(skyMesh.buf);let m=new Mesh(),night=trackName==='marina'||trackName==='summit',rings=[{y:-300,c:night?[.055,.075,.15]:[.41,.59,.66]},{y:5,c:night?[.14,.15,.32]:[.52,.69,.80]},{y:140,c:night?[.15,.13,.29]:[.36,.56,.75]},{y:460,c:night?[.045,.06,.18]:[.09,.32,.57]},{y:820,c:night?[.015,.025,.095]:[.025,.17,.37]}];for(let j=0;j<rings.length-1;j++){let a=rings[j],b=rings[j+1];for(let i=0;i<32;i++){let theta=i*TAU/32,next=(i+1)*TAU/32,mk=(r,y,t)=>[Math.cos(t)*r,y,Math.sin(t)*r];m.tri(mk(850,a.y,theta),mk(850,a.y,next),mk(850,b.y,next),a.c,1.25);m.tri(mk(850,a.y,theta),mk(850,b.y,next),mk(850,b.y,theta),b.c,1.25)}}skyMesh=m.finish()}
+function buildEffects(){let m=new Mesh();m.box(0,.05,2.43,.33,.12,.5,[.20,.83,1],5);m.box(-.37,.09,2.52,.13,.13,.85,[.28,.81,1],5);m.box(.37,.09,2.52,.13,.13,.85,[.58,.36,1],5);flames=m.finish();let s=new Mesh();s.box(0,.08,0,2.95,.018,5.5,[.01,.019,.024]);shadowMesh=s.finish();let police=new Mesh();police.box(0,1.65,-.24,1.18,.17,.42,[1,1,1],4,1);police.box(-.42,1.67,-.23,.30,.16,.39,[1,1,1],5,1);police.box(.42,1.67,-.23,.30,.16,.39,[1,1,1],5,1);policeLightMesh=police.finish();}
+let frameCount=0,mapTime=0;
+function render(){let night=trackName==='marina'||trackName==='summit',cfg=TRACKS[trackName],width=canvas.width,height=canvas.height;gl.viewport(0,0,width,height);gl.clearColor(...cfg.sky,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.useProgram(program);
+let p=player,worldP,at,eye,yaw=0,actualRace=(state==='race'||state==='countdown'||state==='paused'||state==='finished')&&p.d!=null;
+if(actualRace){let q=sample(p.d),pt=worldPoint(p.d,p.lat,p.alt+.07+player.suspension);worldP=pt;yaw=q.heading+player.headingError;let n=sample(p.d+12),camHeading=q.heading+player.headingError*.27,front=[-Math.sin(camHeading),0,-Math.cos(camHeading)];let distance=view===0?11.8:2.4,above=view===0?5.3:2.05;if(p.superTime>0&&view===0){distance=18.4;above=6.8}if(view===0){eye=[pt[0]+Math.sin(camHeading)*distance,pt[1]+above,pt[2]+Math.cos(camHeading)*distance];at=[pt[0]+front[0]*20,pt[1]+1.7+(n.y-q.y)*.45,pt[2]+front[2]*20]}else{eye=[pt[0]+front[0]*1.8,pt[1]+1.5,pt[2]+front[2]*1.8];at=[pt[0]+front[0]*38,pt[1]+1.1+(n.y-q.y),pt[2]+front[2]*38]}}
+else{let q=sample(72),pt=worldPoint(72,0,.75),spin=now*.15;worldP=pt;yaw=q.heading;eye=[pt[0]+Math.sin(q.heading)*8+Math.cos(spin)*5,pt[1]+3.4+Math.sin(spin*.3)*.2,pt[2]+Math.cos(q.heading)*8+Math.sin(spin)*5];at=[pt[0]-Math.cos(q.heading)*4.0,pt[1]+.85,pt[2]+Math.sin(q.heading)*4.0]}
+if(camera[0]===0&&camera[1]===0&&camera[2]===0){camera=eye.slice();cameraTarget=at.slice()}
+let dt=Math.max(.001,fpsDT),follow=1-Math.exp(-(actualRace?5.8:2.7)*dt);for(let j=0;j<3;j++){camera[j]=mix(camera[j],eye[j],follow);cameraTarget[j]=mix(cameraTarget[j],at[j],follow)}let sh=shake*(Math.random()-.5)*.36,cam=[camera[0]+sh,camera[1]+sh*.65,camera[2]+sh],fov=(view?70:62)+(actualRace?(player.speed/65):0)+(p.superTime>0?7:0);let pv=mult(perspective(fov*Math.PI/180,width/Math.max(1,height),.16,2400),lookAt(cam,cameraTarget));gl.uniformMatrix4fv(uniforms.pv,false,pv);gl.uniform3fv(uniforms.eye,cam);gl.uniform3fv(uniforms.sun,cfg.sun);gl.uniform3fv(uniforms.fog,cfg.fog);gl.uniform1f(uniforms.night,night?1:0);gl.uniform1f(uniforms.pulse,Math.sin(now*4));
+// First render the full gradient sky, then reset depth for mountains and the track.
+gl.disable(gl.DEPTH_TEST);gl.uniform1f(uniforms.range,50000);draw(skyMesh,carMatrix(cam[0],cam[1],cam[2]),[1,1,1]);gl.enable(gl.DEPTH_TEST);gl.clear(gl.DEPTH_BUFFER_BIT);gl.uniform1f(uniforms.range,trackName==='summit'?950:night?600:820);
+let id=ident();draw(terrainMesh,id);draw(envMesh,id);draw(roadMesh,id);draw(decorMesh,id);draw(signMesh,id);
+const paint=[.05,.06,.07];
+if(actualRace){for(let cop of cops){let pt=worldPoint(cop.d,cop.lat,.06),q=sample(cop.d);draw(shadowMesh,carMatrix(pt[0],pt[1]-.04,pt[2],q.heading),paint);draw(carMeshes[cop.car],carMatrix(pt[0],pt[1],pt[2],q.heading,clamp(q.pitch,-.23,.23),0),[.08,.15,.29]);let flash=(Math.floor(now*6+cop.phase)%2)===0;draw(policeLightMesh,carMatrix(pt[0],pt[1],pt[2],q.heading),flash?[1,.09,.12]:[.10,.47,1]);}for(let b of bots){if(b.eliminated)continue;let pt=worldPoint(b.d,b.lat,0),q=sample(b.d),l=Math.sin(now*1.8+b.phase)*.022;draw(shadowMesh,carMatrix(pt[0],pt[1]+.003,pt[2],q.heading,0,0),paint);draw(carMeshes[b.car],carMatrix(pt[0],pt[1]+.07,pt[2],q.heading,clamp(q.pitch,-.23,.23),clamp(l,-.035,.035)),CARS[b.car].color)}if(view===0){draw(shadowMesh,carMatrix(worldP[0],worldP[1]-.07-player.alt,worldP[2],yaw),paint);draw(carMeshes[selected],carMatrix(worldP[0],worldP[1],worldP[2],yaw,clamp(sample(p.d).pitch,-.23,.23)+(p.air>0?Math.sin(p.air*4)*.09:0),clamp(player.lean,-.10,.10)),paintOf());if(p.boost||p.superTime>0){let q=sample(p.d),loc=worldPoint(p.d-2.5,p.lat,p.alt+.35);draw(flames,carMatrix(loc[0],loc[1],loc[2],q.heading,0,0,p.superTime>0?1.6:.9),[1,1,1])}}}
+else{let q=sample(72),pt=worldPoint(72,0,.065);draw(carMeshes[selected],carMatrix(pt[0],pt[1]+Math.sin(now*1.7)*.025,pt[2],q.heading,0,0,1.10),paintOf())}
+}
+const streaks=Array.from({length:45},()=>({x:Math.random(),y:Math.random(),speed:.6+Math.random()*2,w:.7+Math.random()*2}));function renderFX(dt){let w=fx.width,h=fx.height;fxctx.clearRect(0,0,w,h);let p=player;if(state==='race'&&(p.boost||p.superTime>0)){fxctx.save();fxctx.globalCompositeOperation='lighter';fxctx.strokeStyle=p.superTime>0?'rgba(255,160,189,.42)':'rgba(109,221,255,.34)';let f=p.superTime>0?1.95:1.12;for(let s of streaks){s.y=(s.y+dt*.44*s.speed*f)%1;let x=(s.x-.5)*w*1.8+w*.5,y=h*.48+s.y*h*.7;fxctx.lineWidth=s.w*f;fxctx.beginPath();fxctx.moveTo(x,y);fxctx.lineTo(x+(x-w/2)*.13*f,y+s.speed*27*f);fxctx.stroke()}fxctx.restore()}
+if(flashTime>0){$('flash').style.opacity=String(flashTime*1.4)}else $('flash').style.opacity='0';
+if(state==='race'&&trackName==='summit'&&player.speed>110){fxctx.save();fxctx.strokeStyle='rgba(224,221,255,.075)';fxctx.lineWidth=1.4;for(let i=0;i<44;i++){let x=(i*167+Math.floor(now*30)*43)%w,y=(i*83+Math.floor(now*21)*29)%h;fxctx.beginPath();fxctx.moveTo(x,y);fxctx.lineTo(x-10,y+22+player.speed*.035);fxctx.stroke()}fxctx.restore()}
+if(state==='race'&&eventMode==='pursuit'){fxctx.fillStyle=Math.sin(now*12)>.45?'rgba(252,40,65,.045)':Math.sin(now*12)<-.45?'rgba(34,100,255,.052)':'transparent';fxctx.fillRect(0,0,w,h)}
+if(state==='race'&&(p.drifting||Math.abs(p.lean)>.04)&&p.speed>105){fxctx.save();fxctx.strokeStyle='rgba(237,245,252,.13)';fxctx.lineWidth=3;for(let i=0;i<5;i++){let x=(i+.7)*w/6,y=h*(.88+(i%2)*.06);fxctx.beginPath();fxctx.moveTo(x,y);fxctx.lineTo(x+Math.sin(now*9+i)*11,y+42);fxctx.stroke()}fxctx.restore()}}
+function resize(){let dpr=Math.min(window.devicePixelRatio||1,window.innerWidth<760?1.4:1.8),w=Math.max(2,Math.round(window.innerWidth*dpr)),h=Math.max(2,Math.round(window.innerHeight*dpr));if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;fx.width=w;fx.height=h}}
+function loop(t){let dt=clamp((t-last)/1000||.016,.001,1.0);last=t;fpsDT=dt;now+=dt;try{let substeps=Math.ceil(dt/.048);for(let tick=0;tick<substeps;tick++)updateRace(dt/substeps);if(toastLeft>0){toastLeft-=dt;if(toastLeft<=0)$('toast').classList.remove('show')}resize();render();renderFX(dt);soundTick(dt);mapTime-=dt;if(mapTime<=0){mapTime=.10;updateMap()}}catch(e){console.error('Race error',e);if(!store.errorShown){store.errorShown=true;$('support').style.display='grid';$('support').querySelector('p').textContent='Game rendering error: '+e.message}}requestAnimationFrame(loop)}
+function paintPickers(){let el=$('carPicks');el.innerHTML=CARS.map((c,i)=>`<button class="carPick${i===selected?' active':''}" data-car="${i}" aria-pressed="${i===selected}"><div class="carIcon" style="background:rgb(${paintOf(i).map(v=>Math.floor(v*255)).join(',')})"></div><div class="carName">${c.name}</div><div class="carClass">${c.type.split(' / ')[0]}</div></button>`).join('');for(let button of el.querySelectorAll('[data-car]'))button.addEventListener('click',()=>chooseCar(Number(button.dataset.car)))}
+function chooseCar(i){selected=i;paintPickers();updatePlate();updateGarage();try{localStorage.setItem('apex-selected-car',String(i))}catch(e){} }
+function updatePlate(){let c=CARS[selected];$('plateName').textContent=c.name;$('plateSub').textContent=c.type;$('specValue').textContent=(c.max+tierFor('engine')*14)+' KM/H';$('specBars').innerHTML=Array.from({length:8},(_,i)=>`<b class="${i<Math.round(c.max/50)?'on':''}"></b>`).join('')}
+function bindHold(button,control){const press=e=>{e.preventDefault();if(button.disabled)return;if(control==='super'){startSuper();return}if(control==='burst'){startBurst();return}touch.add(control);button.classList.add('pressed');refreshInputs();try{button.setPointerCapture(e.pointerId)}catch(ex){}};const release=e=>{touch.delete(control);button.classList.remove('pressed');refreshInputs()};button.addEventListener('pointerdown',press);for(let type of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(type,release)}
+function refreshInputs(){input.left=keys.has('arrowleft')||keys.has('a')||touch.has('left');input.right=keys.has('arrowright')||keys.has('d')||touch.has('right');input.gas=keys.has('arrowup')||keys.has('w')||touch.has('gas');input.brake=keys.has('arrowdown')||keys.has('s')||touch.has('brake');input.nitro=keys.has('shift')||touch.has('nitro');input.drift=keys.has('z')||touch.has('drift')}
+window.addEventListener('keydown',e=>{let k=e.key.toLowerCase();if(['arrowleft','arrowright','arrowup','arrowdown',' ','shift','x','b','c','r','z'].includes(k))e.preventDefault();keys.add(k);refreshInputs();if(e.repeat)return;if(k==='x')startSuper();if(k==='b')startBurst();if(k==='c')toggleCam();if(k==='r')resetPosition();if(k===' '||k==='escape')pause();if(k==='enter'&&state==='garage')raceStart()});window.addEventListener('keyup',e=>{keys.delete(e.key.toLowerCase());refreshInputs()});window.addEventListener('blur',()=>{keys.clear();touch.clear();refreshInputs();if(state==='race')pause()});
+function toggleCam(){view=1-view;$('camBtn').textContent='CAM: '+(view?'HOOD':'CHASE')+' [C]';toast(view?'HOOD CAMERA':'CHASE CAMERA','#9dfaf5',.9)}
+function setHandling(mode){handling=mode;document.getElementById('gripMode').classList.toggle('selectedMode',handling==='grip');document.getElementById('driftMode').classList.toggle('selectedMode',handling==='drift');try{localStorage.setItem('apex-handling',mode)}catch(e){}}
+document.querySelectorAll('[data-upgrade]').forEach(b=>b.addEventListener('click',()=>upgradeCar(b.dataset.upgrade)));$('eventSelect').addEventListener('change',e=>{eventMode=e.target.value;buildRaceEvents();makeWorld();updateEventDescription()});
+$('gripMode').addEventListener('click',()=>setHandling('grip'));$('driftMode').addEventListener('click',()=>setHandling('drift'));
+$('camBtn').addEventListener('click',toggleCam);$('soundBtn').addEventListener('click',()=>{soundOn=!soundOn;$('soundBtn').textContent=soundOn?'♪ SOUND ON':'♫ MUTED';if(soundOn)initAudio()});$('pauseBtn').addEventListener('click',pause);$('raceBtn').addEventListener('click',raceStart);$('resumeBtn').addEventListener('click',pause);$('restartBtn').addEventListener('click',restart);$('garageBtn').addEventListener('click',garage);$('againBtn').addEventListener('click',restart);$('finishGarageBtn').addEventListener('click',garage);
+$('trackSelect').addEventListener('change',e=>{setTrack(e.target.value);buildSky();camera=[0,0,0];cameraTarget=[0,0,0]});document.querySelectorAll('[data-control]').forEach(b=>bindHold(b,b.dataset.control));window.addEventListener('resize',resize);window.addEventListener('contextmenu',e=>{if(e.target.closest('#touch'))e.preventDefault()});
+try{let old=Number(localStorage.getItem('apex-selected-car'));if(Number.isInteger(old)&&old>=0&&old<CARS.length)selected=old}catch(e){}
+try{let saved=localStorage.getItem('apex-handling');if(saved==='drift')setHandling('drift')}catch(e){}
+paintPickers();updatePlate();updateGarage();setTrack('summit');buildSky();buildEffects();resize();requestAnimationFrame(loop);
+// Opt-in diagnostics useful if a browser blocks WebGL or a device runs low on resources.
+window.APEX_DEBUG={getState:()=>({state,selected,trackName,handling,bodyRoll:player.lean,headingError:player.headingError,lateralSpeed:player.latVel,latitude:player.lat,drifting:player.drifting,distance:player.d,trackLength:length,speed:player.speed,position:player.position,lap:player.lap,rivals:bots.length,activeRivals:bots.filter(b=>!b.eliminated).length,rivalSpeed:bots.map(b=>Math.round(b.speed)),rivalMax:bots.map(b=>Math.round(b.max)),rivalStyles:bots.map(b=>b.style),nemeses:bots.filter(b=>b.nemesis>0).map(b=>b.name),knockoutCount,knockoutAt,health:player.health,combo:player.combo,nearMisses:player.nearMisses,challenges:challenges.map(m=>({key:m.key,progress:m.progress,done:m.done})),events:raceEvents.length,eventMode,bank:career.bank,rep:career.rep,wins:career.wins,upgrades:career.upgrades,burstCharges:player.burstCharges,burstMeter:player.burstMeter,burstTime:player.burstTime,driftScore:player.driftScore,heat:player.heat,bust:player.bust,cops:cops.length,win:lastEventWon,meshTriangles:[roadMesh,envMesh,terrainMesh].map(v=>Math.floor(v.count/3))}),start:raceStart,pause,restart,garage,chooseCar,setTrack,startBurst,upgradeCar,choosePaint,finishRace,simulate:(seconds,controls={gas:true,right:false,left:false,brake:false,nitro:false,drift:false})=>{if(state==='countdown'){countdown=0;updateRace(.26)}for(let k=0;k<Math.ceil(seconds*60);k++){Object.assign(input,controls);updateRace(1/60)}}};
+})();
+</script></body></html>
